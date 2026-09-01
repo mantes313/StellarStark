@@ -1,0 +1,69 @@
+/* ---------- Maintain controls: run a visitor-triggered check ---------- */
+
+.maintain-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 1.2rem 0 1.4rem;
+  padding: 1.1rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.maintain-controls-intro {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.maintain-controls-intro-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.maintain-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: none;
+}
+
+.maintain-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+  transition: color 250ms ease;
+}
+.maintain-checklist-item.done { color: var(--ink); }
+
+.maintain-checklist-mark {
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: border-color 250ms ease, background-color 250ms ease;
+}
+.maintain-checklist-item.done .maintain-checklist-mark {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.maintain-controls-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.maintain-status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: color 250ms ease;
+}
+.maintain-status.done { color: var(--blueprint); }

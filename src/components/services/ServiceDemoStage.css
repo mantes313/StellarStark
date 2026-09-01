@@ -1,0 +1,15 @@
+/* ---------- Service demo stage: mock browser + copy + CTA ---------- */
+
+.service-stage-copy {
+  margin-top: 1.4rem;
+}
+.service-stage-copy h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.service-stage-copy p {
+  color: var(--muted);
+  max-width: 46ch;
+  margin-bottom: 1.4rem;
+}

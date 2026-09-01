@@ -1,0 +1,160 @@
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  --cut: 62%;
+}
+
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 68px 24px 0;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+  font-weight: 800;
+  margin-bottom: 1.4rem;
+}
+
+.hero-sub {
+  max-width: 34rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin-bottom: 2.2rem;
+}
+
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Finished side */
+.hero-final {
+  background:
+    radial-gradient(1200px 600px at 78% 18%, rgba(242, 184, 75, 0.09), transparent 60%),
+    var(--bg);
+}
+.hero-glow {
+  position: absolute;
+  top: 14%; right: 10%;
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 65%);
+  pointer-events: none;
+}
+
+/* Blueprint side (decorative twin) */
+.hero-draft {
+  pointer-events: none;
+  clip-path: inset(0 0 0 var(--cut));
+  background:
+    linear-gradient(var(--blueprint-dim) 0 0) 0 0 / 100% 1px no-repeat,
+    repeating-linear-gradient(0deg, rgba(127, 178, 224, 0.07) 0, rgba(127, 178, 224, 0.07) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(127, 178, 224, 0.07) 0, rgba(127, 178, 224, 0.07) 1px, transparent 1px, transparent 48px),
+    var(--bg-deep);
+}
+
+.draft-h1 {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--blueprint);
+}
+
+.draft-sub {
+  color: transparent;
+  position: relative;
+}
+.draft-sub::after {
+  content: "";
+  position: absolute;
+  inset: 4px 0;
+  background: repeating-linear-gradient(0deg, var(--blueprint-dim) 0, var(--blueprint-dim) 1px, transparent 1px, transparent 12px);
+  opacity: 0.6;
+}
+
+.draft-btn {
+  color: transparent;
+  border: 1px dashed var(--blueprint);
+  background: transparent;
+}
+
+.draft-note {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--blueprint);
+  opacity: 0.85;
+}
+.draft-note::before {
+  content: "";
+  position: absolute;
+  left: -34px; top: 50%;
+  width: 26px; height: 1px;
+  background: var(--blueprint-dim);
+}
+.draft-note-h1 { top: -1.4rem; left: 2px; }
+.draft-note-h1::before { display: none; }
+.draft-note-cta { bottom: -1.8rem; left: 2px; }
+.draft-note-cta::before { display: none; }
+.draft-note-grid { top: 38%; right: 4%; }
+
+/* Handle */
+.hero-handle {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: var(--cut);
+  width: 44px;
+  margin-left: -22px;
+  cursor: ew-resize;
+  touch-action: none;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.handle-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--blueprint);
+  opacity: 0.7;
+}
+
+.handle-grip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--blueprint);
+  color: var(--blueprint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  user-select: none;
+  transition: transform 160ms var(--ease-out);
+}
+.hero-handle:active .handle-grip { transform: scale(0.95); }
+.grip-chev { font-size: 0.95rem; line-height: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .handle-grip { transition: none; }
+}
+
+@media (max-width: 768px) {
+  .draft-note-grid { display: none; }
+  .hero-sub { font-size: 1.05rem; }
+  .hero h1 br { display: none; }
+}

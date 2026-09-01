@@ -1,0 +1,61 @@
+/* ---------- Update controls: pick a change, ship it ---------- */
+
+.update-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 1.2rem 0 1.4rem;
+  padding: 1.1rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.update-controls-intro {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.update-controls-intro-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.update-requests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.update-request-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .update-request-chip:hover { border-color: var(--blueprint-dim); color: var(--ink); }
+}
+.update-request-chip:active { transform: scale(0.97); }
+.update-request-chip.active {
+  border-color: var(--accent);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.update-status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: color 250ms ease;
+}
+.update-status.shipped { color: var(--blueprint); }

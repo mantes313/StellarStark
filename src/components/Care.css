@@ -1,0 +1,46 @@
+/* ---------- Care ---------- */
+
+.care { background: var(--bg-deep); border-block: 1px solid var(--line); overflow: hidden; padding: 6.5rem 0; }
+
+.pulse {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 120px;
+  opacity: 0.55;
+}
+#pulsePath {
+  stroke-dasharray: 1420;
+  stroke-dashoffset: 1420;
+}
+.care.in-view #pulsePath {
+  animation: drawPulse 2.4s var(--ease-in-out) forwards;
+}
+@keyframes drawPulse {
+  to { stroke-dashoffset: 0; }
+}
+
+.care-inner { padding-top: 3.5rem; }
+
+.care h2 { max-width: 22ch; }
+
+.care-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 1rem;
+}
+
+.fact h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.fact p { color: var(--muted); font-size: 0.95rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .care.in-view #pulsePath { animation: none; stroke-dashoffset: 0; }
+}
+
+@media (max-width: 900px) {
+  .care-facts { grid-template-columns: 1fr; gap: 1.8rem; }
+}
+
+@media (max-width: 768px) {
+  .care { padding: 4.5rem 0; }
+}

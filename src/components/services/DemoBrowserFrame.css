@@ -1,0 +1,39 @@
+/* ---------- Shared mock-browser chrome for service mini-demos ---------- */
+
+.demo-browser {
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  overflow: hidden;
+}
+
+.demo-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--line);
+}
+
+.demo-browser-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  flex: none;
+}
+
+.demo-browser-url {
+  flex: 1;
+  height: 14px;
+  margin-left: 0.4rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.demo-browser-viewport {
+  position: relative;
+  height: 220px;
+  padding: 1.4rem;
+  overflow: hidden;
+}

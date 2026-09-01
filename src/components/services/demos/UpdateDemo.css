@@ -1,0 +1,76 @@
+/* ---------- Update demo: pick a request, watch it wipe in ---------- */
+
+.update-demo {
+  position: relative;
+  height: 100%;
+}
+
+.update-demo-old,
+.update-demo-new {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.update-demo-old {
+  filter: grayscale(1) opacity(0.55);
+}
+
+.update-demo-new {
+  clip-path: inset(0 100% 0 0);
+  background: var(--bg-raised);
+}
+.update-demo.is-revealed .update-demo-new {
+  clip-path: inset(0 0 0 0);
+}
+.update-demo:not(.is-static).is-revealed .update-demo-new {
+  animation: updateRevealOnce 900ms var(--ease-in-out);
+}
+
+.update-demo-h {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.update-demo-new .update-demo-h { color: var(--accent); }
+
+.update-demo-b {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.update-demo-sweep {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0%;
+  width: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 16px 2px color-mix(in srgb, var(--accent) 70%, transparent);
+  opacity: 0;
+  animation: updateSweepOnce 900ms var(--ease-in-out);
+}
+
+@keyframes updateRevealOnce {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes updateSweepOnce {
+  0% { left: 0%; opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.update-demo.is-static .update-demo-new {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .update-demo-sweep { display: none; }
+}

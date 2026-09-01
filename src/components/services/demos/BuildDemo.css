@@ -1,0 +1,131 @@
+/* ---------- Build demo: live "build your own" page preview ---------- */
+
+.byo-demo {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.byo-demo-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: none;
+}
+
+.byo-demo-dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--byo-accent);
+  transition: background-color 300ms ease;
+}
+
+.byo-demo-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 250ms ease;
+}
+.byo-demo-name.is-placeholder { color: var(--muted); font-weight: 500; }
+
+.byo-demo-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.byo-demo-hero {
+  flex: 1;
+  min-height: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--byo-accent) 32%, transparent), transparent);
+  border: 1px solid var(--line);
+  transition: background 300ms ease;
+}
+
+.byo-demo-text {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.byo-demo-tagline {
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: var(--ink);
+  transition: color 250ms ease;
+}
+.byo-demo-tagline.is-placeholder { color: var(--muted); }
+
+.byo-demo-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.byo-demo-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.62rem;
+  white-space: nowrap;
+  background: var(--byo-accent);
+  color: var(--accent-ink);
+  transition: background-color 300ms ease;
+}
+
+.byo-demo-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--blueprint-dim);
+  color: var(--ink);
+}
+
+/* ---- Split layout: hero block sits beside the copy ---- */
+
+.byo-layout-split .byo-demo-body { flex-direction: row; align-items: stretch; }
+.byo-layout-split .byo-demo-hero { flex: 0 0 36%; }
+.byo-layout-split .byo-demo-text { flex: 1; justify-content: center; }
+
+/* ---- Minimal layout: no hero block, centered and airy ---- */
+
+.byo-layout-minimal .byo-demo-hero { display: none; }
+.byo-layout-minimal .byo-demo-body { align-items: center; justify-content: center; text-align: center; }
+.byo-layout-minimal .byo-demo-name { font-size: 0.95rem; }
+.byo-layout-minimal .byo-demo-tagline { max-width: 24ch; }
+.byo-layout-minimal .byo-demo-actions { justify-content: center; }
+
+/* ---- Building shimmer: sells the "it's constructing" feeling ---- */
+
+.byo-demo-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, rgba(233, 238, 246, 0.14) 50%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: 150% 0;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.byo-demo.is-building .byo-demo-shimmer {
+  opacity: 1;
+  animation: byoShimmerSweep 900ms linear infinite;
+}
+
+@keyframes byoShimmerSweep {
+  from { background-position: 150% 0; }
+  to { background-position: -50% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .byo-demo-shimmer { display: none; }
+}

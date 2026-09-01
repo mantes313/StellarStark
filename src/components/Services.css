@@ -1,0 +1,25 @@
+/* ---------- Services: interactive compass ---------- */
+
+.services { padding: 7.5rem 0; }
+
+.services-compass-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 420px) 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.services-compass-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .services-compass-layout { grid-template-columns: 1fr; }
+  .services-compass-wrap { order: 1; }
+  .services-stage-wrap { order: 2; }
+}
+
+@media (max-width: 768px) {
+  .services { padding: 5rem 0; }
+}

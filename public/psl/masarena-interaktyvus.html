@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MasaRena — Masažai Marijampolėje</title>
+<meta name="description" content="MasaRena masažo kabinetas Marijampolėje — daugiau nei 15 metų patirties. Gydomieji, limfodrenažiniai, giliųjų audinių masažai. Tel. (0-633) 88662, Vytauto g. 34-A.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#2B2029;
+  --plum-2:#382B36;
+  --blush:#E9CFC6;
+  --gold:#C9A15E;
+  --ivory:#F6EFE9;
+  --rose:#C98A87;
+  --ink:#332730;
+  --line:rgba(201,161,94,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',system-ui,sans-serif;font-weight:300;
+  background:var(--plum);color:var(--ivory);line-height:1.7;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--gold);color:var(--plum)}
+h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.12}
+em{font-style:italic}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ===== header ===== */
+header{position:fixed;inset:0 0 auto;z-index:60;background:rgba(43,32,41,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{text-decoration:none}
+.brand b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px}
+.brand i{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:24px}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:13.5px;letter-spacing:.06em}
+.nav-links a{text-decoration:none;opacity:.85;transition:.25s}
+.nav-links a:hover{opacity:1;color:var(--gold)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--gold);color:var(--plum);
+  padding:12px 26px;border-radius:999px;
+  font-weight:500;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;transition:transform .2s, background .25s, box-shadow .25s;
+}
+.btn:hover{background:#D8B274;transform:translateY(-1px);box-shadow:0 10px 26px rgba(201,161,94,.3)}
+.btn.ghost{background:transparent;color:var(--ivory);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--gold);background:rgba(201,161,94,.08);box-shadow:none}
+@media(max-width:780px){.nav-links a:not(.btn){display:none}}
+
+/* ===== hero ===== */
+.hero{min-height:92svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 70px}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
+.glow.g1{width:560px;height:560px;background:rgba(201,161,94,.16);top:-140px;right:-100px;animation:drift 16s ease-in-out infinite alternate}
+.glow.g2{width:460px;height:460px;background:rgba(201,138,135,.13);bottom:-160px;left:-120px;animation:drift 20s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-50px,40px) scale(1.1)}}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.overline{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.overline::before{content:"";width:40px;height:1px;background:var(--gold)}
+.hero h1{font-size:clamp(42px,6vw,76px);margin-bottom:20px}
+.hero h1 em{color:var(--blush)}
+.hero .lead{font-size:17px;max-width:46ch;color:rgba(246,239,233,.8);margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.live{
+  margin-top:30px;display:inline-flex;align-items:center;gap:10px;
+  font-size:13.5px;letter-spacing:.05em;color:rgba(246,239,233,.75);
+  border:1px solid var(--line);border-radius:999px;padding:9px 18px;
+}
+.live .dot{width:8px;height:8px;border-radius:50%;background:#8FBF8B;box-shadow:0 0 10px #8FBF8B}
+.live.closed .dot{background:var(--rose);box-shadow:0 0 10px var(--rose)}
+.exp{display:flex;gap:36px;margin-top:34px}
+.exp div b{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:600;color:var(--gold);display:block;line-height:1.1}
+.exp div span{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,239,233,.55)}
+
+/* kvėpavimo ratas */
+.breath-zone{display:flex;flex-direction:column;align-items:center;gap:22px}
+.breath{position:relative;width:min(300px,68vw);aspect-ratio:1;display:grid;place-items:center}
+.breath .ring{position:absolute;inset:0;border-radius:50%;border:1px solid var(--line)}
+.breath .ring.r2{inset:11%;border-color:rgba(201,161,94,.35)}
+.breath .ring.r3{inset:22%;border-color:rgba(201,161,94,.45)}
+.breath .core{
+  position:absolute;inset:33%;border-radius:50%;
+  background:radial-gradient(circle at 38% 32%, rgba(233,207,198,.9), rgba(201,138,135,.75) 45%, rgba(201,161,94,.6));
+  box-shadow:0 0 70px rgba(201,138,135,.4), inset 0 0 30px rgba(255,255,255,.15);
+}
+.breath .ring,.breath .core{animation:breathe 9s ease-in-out infinite}
+@keyframes breathe{0%{transform:scale(.86)}38%{transform:scale(1)}55%{transform:scale(1)}93%{transform:scale(.86)}100%{transform:scale(.86)}}
+.breath-word{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:23px;color:var(--plum);font-weight:500}
+.breath-cap{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:rgba(246,239,233,.5);text-align:center}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:46px;text-align:center}
+  .overline,.hero-cta{justify-content:center}
+  .hero .lead{margin-inline:auto}
+  .exp{justify-content:center}
+}
+
+/* ===== sekcijos ===== */
+.section{padding:96px 0;position:relative}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 56px}
+.sec-head .overline{justify-content:center;margin-bottom:16px}
+.sec-head h2{font-size:clamp(32px,4.2vw,52px);margin-bottom:14px}
+.sec-head p{color:rgba(246,239,233,.72);font-size:15.5px}
+.light{background:var(--ivory);color:var(--ink)}
+.light .sec-head p{color:#6B5A63}
+.light .overline{color:#A57F3B}
+.light .overline::before{background:#A57F3B}
+
+/* ===== ĮTAMPOS ŽEMĖLAPIS — signatūrinė interakcija ===== */
+.bodymap{display:grid;grid-template-columns:auto 1fr;gap:60px;align-items:center;max-width:920px;margin:0 auto}
+.body-fig{position:relative;width:min(300px,80vw);margin:0 auto}
+.body-fig svg{width:100%;height:auto;display:block}
+.silhouette{fill:rgba(233,207,198,.10);stroke:rgba(233,207,198,.35);stroke-width:1.5}
+.zone{cursor:pointer}
+.zone circle.halo{fill:rgba(201,161,94,.14);transition:.3s}
+.zone circle.spot{fill:var(--gold);opacity:.85;transition:.3s}
+.zone circle.pulse{fill:none;stroke:var(--gold);stroke-width:1.5;opacity:.7;transform-origin:center;animation:zpulse 2.4s ease-out infinite}
+@keyframes zpulse{0%{transform:scale(.4);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+.zone:hover circle.halo,.zone.active circle.halo{fill:rgba(201,161,94,.3)}
+.zone.active circle.spot{fill:var(--blush)}
+.zone.done circle.spot{fill:#8FBF8B}
+.zone.done circle.pulse{animation:none;opacity:0}
+.zone text{fill:rgba(246,239,233,.0);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:.3s;pointer-events:none}
+.zone:hover text,.zone.active text{fill:rgba(246,239,233,.85)}
+
+.map-panel{
+  background:var(--plum-2);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:38px 36px;
+  min-height:320px;
+  display:flex;flex-direction:column;justify-content:center;
+  transition:border-color .3s;
+}
+.map-panel.lit{border-color:rgba(201,161,94,.55);box-shadow:0 0 60px rgba(201,161,94,.08)}
+.map-panel .tag{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;min-height:16px}
+.map-panel h3{font-size:30px;margin-bottom:12px}
+.map-panel p{font-size:15px;color:rgba(246,239,233,.8);margin-bottom:24px}
+.map-panel .rec{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(201,161,94,.1);
+  border:1px solid var(--line);
+  border-radius:14px;padding:16px 18px;margin-bottom:24px;
+}
+.map-panel .rec .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,239,233,.55);display:block}
+.map-panel .rec b{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--blush)}
+.map-panel .actions{display:flex;gap:12px;flex-wrap:wrap}
+.map-hint{font-size:13px;color:rgba(246,239,233,.5);text-align:center;margin-top:26px;letter-spacing:.04em}
+@media(max-width:860px){
+  .bodymap{grid-template-columns:1fr;gap:36px}
+}
+
+/* ===== paslaugos: akordeonas ===== */
+.acc{max-width:760px;margin:0 auto}
+.acc-item{border-bottom:1px solid rgba(51,39,48,.16)}
+.acc-btn{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:24px 6px;text-align:left;transition:padding .25s;
+}
+.acc-btn:hover{padding-left:14px}
+.acc-btn h3{font-size:24px;font-weight:500}
+.acc-btn .pl{
+  width:34px;height:34px;border-radius:50%;flex:none;
+  border:1px solid rgba(165,127,59,.5);
+  display:grid;place-items:center;position:relative;transition:transform .3s, background .3s;
+}
+.acc-btn .pl::before,.acc-btn .pl::after{content:"";position:absolute;background:#A57F3B;transition:.3s}
+.acc-btn .pl::before{width:12px;height:1.5px}
+.acc-btn .pl::after{width:1.5px;height:12px}
+.acc-item.open .acc-btn .pl{transform:rotate(45deg);background:rgba(165,127,59,.12)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.acc-body p{padding:0 6px 26px;font-size:15px;color:#6B5A63;max-width:60ch}
+.acc-note{text-align:center;margin-top:32px;font-size:14.5px;color:#6B5A63}
+.acc-note a{color:#A57F3B;font-weight:500}
+
+/* ===== galerija ===== */
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-auto-rows:240px;gap:16px}
+.ph{
+  position:relative;border-radius:18px;overflow:hidden;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(201,161,94,.35), transparent 55%),
+    radial-gradient(circle at 75% 80%, rgba(201,138,135,.3), transparent 55%),
+    var(--plum-2);
+  display:grid;place-items:center;
+}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .cap{position:relative;z-index:1;text-align:center;padding:20px;color:rgba(246,239,233,.6)}
+.ph .cap svg{width:32px;height:32px;stroke:rgba(246,239,233,.5);margin-bottom:8px}
+.ph .cap span{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase}
+.ph.tall{grid-row:span 2}
+@media(max-width:820px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:200px}.ph.tall{grid-row:span 1}}
+.gallery-note{text-align:center;margin-top:24px;font-size:13.5px;color:rgba(246,239,233,.5)}
+
+/* ===== citata ===== */
+.quote-sec{text-align:center;background:radial-gradient(700px 380px at 50% 0%, rgba(201,161,94,.10), transparent 65%), var(--plum)}
+.quote-stars{color:var(--gold);letter-spacing:6px;font-size:16px;margin-bottom:20px}
+.bigquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(26px,4vw,44px);line-height:1.3;max-width:22ch;margin:0 auto 24px}
+.bigquote .accent{color:var(--gold)}
+.quote-who{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:rgba(246,239,233,.55)}
+.quote-foot{margin-top:36px;font-size:14px;color:rgba(246,239,233,.55)}
+.quote-foot a{color:var(--gold)}
+
+/* ===== kontaktai ===== */
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.contact h2{font-size:clamp(32px,4.2vw,50px);margin-bottom:16px}
+.contact .lead{color:#6B5A63;font-size:15.5px;margin-bottom:32px;max-width:44ch}
+.c-row{display:flex;gap:16px;padding:17px 0;border-bottom:1px solid rgba(51,39,48,.14);align-items:flex-start}
+.c-row:last-child{border-bottom:none}
+.c-row .ic{width:42px;height:42px;border-radius:50%;flex:none;border:1px solid rgba(165,127,59,.4);display:grid;place-items:center}
+.c-row .ic svg{width:19px;height:19px;stroke:#A57F3B}
+.c-row b{display:block;font-size:15px;font-weight:500;margin-bottom:2px}
+.c-row span{font-size:14.5px;color:#6B5A63}
+.c-row a{color:#A57F3B;font-weight:500;text-decoration:none}
+.c-row a:hover{text-decoration:underline}
+.hours{width:100%;font-size:14.5px;color:#6B5A63;border-collapse:collapse}
+.hours td{padding:3px 0}
+.hours td:last-child{text-align:right}
+.hours tr.today td{color:#A57F3B;font-weight:500}
+.call-card{background:var(--plum);color:var(--ivory);border-radius:24px;padding:50px 42px;text-align:center;position:relative;overflow:hidden}
+.call-card::before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;background:rgba(201,161,94,.14);filter:blur(70px);top:-120px;right:-100px}
+.call-card .overline{justify-content:center;margin-bottom:16px}
+.call-card .num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(32px,3.8vw,44px);display:block;text-decoration:none;margin-bottom:12px;position:relative}
+.call-card .num:hover{color:var(--gold)}
+.call-card p{font-size:14.5px;color:rgba(246,239,233,.72);margin-bottom:26px;position:relative}
+@media(max-width:860px){.contact .grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:28px 0}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(246,239,233,.5)}
+footer b{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--ivory);font-weight:600}
+footer i{color:var(--gold)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#virsus"><b>Masa</b><i>Rena</i></a>
+    <nav class="nav-links" aria-label="Navigacija">
+      <a href="#itampa">Įtampos žemėlapis</a>
+      <a href="#paslaugos">Masažai</a>
+      <a href="#galerija">Studija</a>
+      <a href="#registracija">Kontaktai</a>
+      <a class="btn" href="tel:+37063388662">Registruotis</a>
+    </nav>
+  </div>
+</header>
+
+<main id="virsus">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="glow g1" aria-hidden="true"></div>
+  <div class="glow g2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <p class="overline">Masažo kabinetas · Marijampolė</p>
+      <h1>Valanda, kuri priklauso <em>tik jums.</em></h1>
+      <p class="lead">MasaRena — daugiau nei 15 metų Marijampolėje veikiantis masažo kabinetas. Gydomieji ir atpalaiduojantys masažai, kurie išvaduoja nuo įtampos, nuovargio ir raumenų skausmo.</p>
+      <div class="hero-cta">
+        <a class="btn" href="tel:+37063388662">Registruotis telefonu</a>
+        <a class="btn ghost" href="#itampa">Kur jaučiate įtampą?</a>
+      </div>
+      <div class="live" id="liveStatus"><span class="dot"></span><span id="liveText">Tikrinama…</span></div>
+      <div class="exp">
+        <div><b>15+</b><span>metų patirties</span></div>
+        <div><b>8</b><span>masažų rūšys</span></div>
+        <div><b>1</b><span>tikslas — jūsų savijauta</span></div>
+      </div>
+    </div>
+    <div class="breath-zone" aria-hidden="true">
+      <div class="breath">
+        <span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>
+        <span class="core"></span>
+        <span class="breath-word" id="breathWord">įkvėpkite</span>
+      </div>
+      <p class="breath-cap">Sustokite akimirkai — pakvėpuokite kartu</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ĮTAMPOS ŽEMĖLAPIS ================= -->
+<section class="section" id="itampa">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="overline">Interaktyvu</p>
+      <h2>Kur jūsų kūnas <em>kaupia įtampą?</em></h2>
+      <p>Palieskite vietą, kuri vargina — parodysime, kuris masažas jai padės.</p>
+    </div>
+
+    <div class="bodymap">
+      <div class="body-fig">
+        <svg viewBox="0 0 300 560" role="group" aria-label="Kūno įtampos žemėlapis">
+          <!-- siluetas (nugaros vaizdas) -->
+          <g transform="translate(10,560) scale(0.056,-0.056)">
+            <path class="silhouette" vector-effect="non-scaling-stroke" d="M2380 9986 c-104 -22 -191 -90 -231 -180 -27 -62 -48 -180 -49 -275 l0 -73 -19 23 c-17 21 -21 22 -36 9 -45 -37 16 -257 75 -270 21 -5 26 -14 35 -65 6 -33 22 -90 34 -127 20 -57 23 -82 19 -171 -3 -94 -6 -108 -32 -147 -39 -59 -71 -87 -140 -122 -83 -42 -194 -68 -291 -68 -124 0 -177 -20 -250 -93 -37 -38 -72 -87 -92 -127 -59 -124 -65 -156 -73 -415 -7 -220 -11 -255 -44 -410 -51 -245 -90 -374 -151 -505 -129 -276 -156 -375 -200 -720 -32 -253 -46 -322 -102 -494 -71 -219 -71 -218 -145 -253 -89 -42 -160 -102 -195 -165 -17 -29 -47 -73 -67 -96 -61 -74 -40 -113 40 -74 26 13 53 37 67 59 14 21 32 45 42 53 17 14 18 12 12 -48 -6 -59 -17 -88 -101 -277 -41 -92 -47 -145 -17 -145 25 0 55 40 115 150 26 47 56 94 68 105 l20 20 -5 -25 c-2 -14 -21 -83 -41 -155 -48 -169 -54 -213 -32 -221 37 -14 56 21 139 255 32 92 57 127 57 79 0 -12 -7 -70 -16 -128 -28 -198 -29 -216 -9 -224 39 -14 59 34 100 232 13 68 28 128 31 134 13 20 23 -18 34 -125 12 -125 16 -137 40 -137 27 0 31 22 29 164 -1 97 4 159 20 239 13 68 21 147 21 214 0 79 5 124 21 177 39 132 260 730 329 891 50 115 75 189 89 263 12 57 28 130 36 162 17 64 168 499 183 526 15 27 93 -409 112 -624 14 -171 3 -236 -69 -390 -91 -196 -132 -341 -170 -607 -34 -234 -53 -488 -54 -720 0 -212 1 -231 46 -535 64 -432 109 -835 138 -1245 7 -95 9 -279 7 -450 -3 -159 -1 -335 4 -390 15 -178 90 -603 186 -1060 l40 -190 -4 -215 c-3 -172 -8 -234 -24 -310 -12 -52 -26 -117 -31 -145 -6 -27 -19 -94 -31 -148 -11 -54 -21 -126 -22 -161 -1 -62 0 -64 42 -106 23 -24 45 -40 49 -36 3 3 12 -3 20 -14 8 -11 25 -20 37 -20 13 0 27 -7 30 -16 10 -26 49 -13 60 21 18 63 24 69 19 18 -5 -50 -5 -52 22 -59 36 -9 73 5 97 37 23 31 43 141 40 229 -7 282 -3 396 17 463 16 55 18 78 11 125 -54 342 -54 347 -36 569 16 194 32 329 72 628 20 146 15 337 -16 600 -24 207 -23 377 4 494 15 65 18 147 20 600 3 557 2 535 60 886 13 83 28 183 32 223 5 53 15 89 35 125 26 47 29 61 29 150 l0 97 30 0 30 0 0 -97 c0 -89 3 -103 29 -150 20 -36 30 -72 35 -125 4 -40 19 -140 32 -223 58 -353 57 -338 60 -890 2 -451 5 -530 20 -595 27 -118 29 -288 4 -495 -31 -263 -36 -454 -16 -600 40 -300 56 -434 72 -629 17 -207 17 -209 -5 -355 -42 -288 -41 -266 -20 -339 19 -65 24 -183 17 -462 -3 -88 17 -198 40 -229 24 -32 61 -46 97 -37 27 7 27 9 22 59 -5 51 1 45 19 -18 11 -34 50 -47 60 -21 3 9 17 16 30 16 12 0 29 9 37 20 8 11 17 17 20 14 4 -4 26 12 49 36 42 42 43 44 42 106 -1 35 -11 107 -22 161 -12 54 -25 121 -31 148 -5 28 -19 93 -31 145 -16 76 -21 138 -24 310 l-4 215 40 190 c96 459 171 883 186 1060 5 55 7 229 4 386 -7 445 38 977 145 1699 45 304 46 323 46 535 -2 415 -60 874 -144 1135 -12 36 -48 122 -80 192 -72 155 -84 224 -69 392 20 215 97 648 111 623 15 -26 168 -464 184 -526 8 -33 24 -106 36 -163 14 -74 40 -149 89 -263 67 -157 302 -796 334 -907 10 -35 16 -95 16 -162 0 -64 8 -145 20 -208 14 -72 20 -144 20 -240 0 -149 3 -168 30 -168 24 0 28 12 40 137 11 107 21 145 34 125 3 -6 18 -66 31 -134 41 -198 61 -246 100 -232 20 8 19 26 -9 224 -29 204 -15 201 64 -14 59 -162 85 -204 115 -192 23 8 17 50 -31 221 -20 72 -39 141 -41 155 l-5 25 20 -20 c12 -11 42 -58 68 -105 60 -110 90 -150 115 -150 30 0 24 53 -17 145 -84 189 -95 218 -101 277 -6 60 -5 62 12 48 10 -8 28 -32 42 -53 39 -62 143 -100 143 -51 0 9 -21 44 -46 77 -25 34 -55 78 -65 99 -24 47 -104 112 -187 151 -74 35 -74 34 -145 253 -56 172 -70 241 -102 494 -27 210 -41 291 -73 400 -27 91 -83 233 -126 317 -47 95 -81 196 -122 373 -58 245 -74 366 -74 555 0 207 -14 278 -75 401 -81 165 -171 224 -340 224 -208 0 -405 100 -451 229 -21 59 -18 212 7 279 11 31 26 86 33 122 10 55 15 65 37 70 58 13 119 233 74 270 -15 13 -19 12 -36 -9 l-19 -23 0 73 c-1 95 -22 211 -50 277 -24 56 -86 119 -147 150 -77 40 -214 52 -323 28z"/>
+          </g>
+
+          <!-- zonos -->
+          <g class="zone" data-zone="sprandas" tabindex="0" role="button" aria-label="Sprandas">
+            <circle class="halo" cx="150" cy="72" r="24"/>
+            <circle class="pulse" cx="150" cy="72" r="15"/>
+            <circle class="spot" cx="150" cy="72" r="7"/>
+            <text x="186" y="76">Sprandas</text>
+          </g>
+          <g class="zone" data-zone="peciai" tabindex="0" role="button" aria-label="Pečiai">
+            <circle class="halo" cx="102" cy="118" r="26"/>
+            <circle class="pulse" cx="102" cy="118" r="16"/>
+            <circle class="spot" cx="102" cy="118" r="7"/>
+            <text x="14" y="122">Pečiai</text>
+          </g>
+          <g class="zone" data-zone="nugara" tabindex="0" role="button" aria-label="Viršutinė nugara">
+            <circle class="halo" cx="150" cy="168" r="30"/>
+            <circle class="pulse" cx="150" cy="168" r="18"/>
+            <circle class="spot" cx="150" cy="168" r="7"/>
+            <text x="190" y="172">Nugara</text>
+          </g>
+          <g class="zone" data-zone="juosmuo" tabindex="0" role="button" aria-label="Juosmuo">
+            <circle class="halo" cx="150" cy="235" r="28"/>
+            <circle class="pulse" cx="150" cy="235" r="17"/>
+            <circle class="spot" cx="150" cy="235" r="7"/>
+            <text x="190" y="239">Juosmuo</text>
+          </g>
+          <g class="zone" data-zone="kojos" tabindex="0" role="button" aria-label="Kojos">
+            <circle class="halo" cx="122" cy="420" r="28"/>
+            <circle class="pulse" cx="122" cy="420" r="17"/>
+            <circle class="spot" cx="122" cy="420" r="7"/>
+            <text x="160" y="424">Kojos</text>
+          </g>
+          <g class="zone" data-zone="visas" tabindex="0" role="button" aria-label="Visas kūnas — bendras nuovargis">
+            <circle class="halo" cx="198" cy="118" r="26"/>
+            <circle class="pulse" cx="198" cy="118" r="16"/>
+            <circle class="spot" cx="198" cy="118" r="7"/>
+            <text x="228" y="122">Nuovargis</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="map-panel" id="mapPanel" aria-live="polite">
+        <p class="tag" id="mpTag">Pasirinkite zoną</p>
+        <h3 id="mpTitle">Jūsų kūnas žino, kur skauda</h3>
+        <p id="mpText">Spustelėkite šviečiantį tašką ant silueto — pagal tai, kur kaupiasi jūsų įtampa, patarsime tinkamiausią masažą iš mūsų meniu.</p>
+        <div class="rec" id="mpRec" style="display:none">
+          <div><span class="lbl">Rekomenduojame</span><b id="mpRecName"></b></div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="tel:+37063388662">Registruotis šiam masažui</a>
+          <a class="btn ghost" href="#paslaugos">Visi masažai</a>
+        </div>
+      </div>
+    </div>
+    <p class="map-hint" id="mapHint">Išbandykite visas zonas — kiekviena „atsipalaiduos“ ✻</p>
+  </div>
+</section>
+
+<!-- ================= MASAŽŲ MENIU ================= -->
+<section class="section light" id="paslaugos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="overline">Masažų meniu</p>
+      <h2>Aštuoni būdai <em>atgauti save</em></h2>
+      <p>Spustelėkite masažą ir sužinokite, kam jis skirtas. Dėl kainų ir trukmės — skambinkite.</p>
+    </div>
+    <div class="acc" id="acc">
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Gydomasis masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Skirtas konkrečioms problemoms: raumenų skausmui, sustingimui, įtampai po traumų ar didelio krūvio. Dirbama tikslingai su probleminėmis vietomis.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Nugaros masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Populiariausias pasirinkimas sėdimo darbo žmonėms — sprandas, pečių juosta, visa nugara. Grąžina laisvę judesiams ir lengvumą laikysenai.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Giliųjų audinių masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Intensyvus darbas su giliaisiais raumenų sluoksniais — kai įtampa sena, o paprastas masažas jos „nepasiekia“.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Limfodrenažinis masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Švelnus, ritmiškas masažas, skatinantis limfos apytaką — mažina tinimus, sunkumo jausmą kojose, padeda organizmui apsivalyti.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Klasikinis kūno masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Tolygus viso kūno masažas — atpalaiduoja raumenis, gerina kraujotaką ir bendrą savijautą. Puikus pasirinkimas pirmam apsilankymui.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Kiniškas masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Rytietiškomis technikomis paremtas masažas, veikiantis energetinius taškus — kūno ir minčių pusiausvyrai atkurti.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Gua sha masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Tradicinė technika specialiomis plokštelėmis — skatina kraujotaką, mažina raumenų įtampą ir sąstingį.</p></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false"><h3>Liekninamasis masažas</h3><span class="pl" aria-hidden="true"></span></button>
+        <div class="acc-body"><p>Intensyvus masažas probleminėms kūno zonoms — stangrina odą, gerina limfos ir kraujo apytaką, papildo jūsų pastangas sportuojant.</p></div>
+      </div>
+    </div>
+    <p class="acc-note">Dėl kainų, trukmės ir dovanų kuponų skambinkite <a href="tel:+37063388662">(0-633) 88662</a>.</p>
+  </div>
+</section>
+
+<!-- ================= GALERIJA ================= -->
+<section class="section" id="galerija">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="overline">Studija</p>
+      <h2>Ramybės kampelis <em>Vytauto gatvėje</em></h2>
+    </div>
+    <div class="gallery">
+      <figure class="ph tall"><img src="nuotrauka-1.jpg" alt="MasaRena masažo kabinetas" onerror="this.remove()"><figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-4.5-4.5L9 18"/></svg><span>Masažo kabinetas</span></figcaption></figure>
+      <figure class="ph"><img src="nuotrauka-2.jpg" alt="Masažo procedūra" onerror="this.remove()"><figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-4.5-4.5L9 18"/></svg><span>Masažas</span></figcaption></figure>
+      <figure class="ph"><img src="nuotrauka-3.jpg" alt="SPA atmosfera" onerror="this.remove()"><figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-4.5-4.5L9 18"/></svg><span>SPA</span></figcaption></figure>
+      <figure class="ph"><img src="nuotrauka-4.jpg" alt="Studijos interjeras" onerror="this.remove()"><figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-4.5-4.5L9 18"/></svg><span>Interjeras</span></figcaption></figure>
+      <figure class="ph"><img src="nuotrauka-5.jpg" alt="Aliejai ir priemonės" onerror="this.remove()"><figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 15l-4.5-4.5L9 18"/></svg><span>Detalės</span></figcaption></figure>
+    </div>
+    <p class="gallery-note">Atsiųskite man studijos nuotraukas — įkelsiu jas į šias vietas.</p>
+  </div>
+</section>
+
+<!-- ================= ATSILIEPIMAS ================= -->
+<section class="section quote-sec" id="atsiliepimai">
+  <div class="wrap">
+    <p class="overline" style="justify-content:center">Klientų žodžiais</p>
+    <p class="quote-stars" aria-hidden="true">★★★★★</p>
+    <blockquote class="bigquote">„Labai patiko. <span class="accent">Atidi, profesionali</span> savo srities žinovė.“</blockquote>
+    <p class="quote-who">Egidijus · Google atsiliepimas</p>
+    <p class="quote-foot">Daugiau atsiliepimų — <a href="https://www.google.com/maps/search/MasaRena+Masa%C5%BEai+Marijampol%C4%97je" target="_blank" rel="noopener">Google žemėlapiuose</a> ir <a href="https://www.facebook.com/MasazaiMarijampoleje/" target="_blank" rel="noopener">Facebook</a>.</p>
+  </div>
+</section>
+
+<!-- ================= KONTAKTAI ================= -->
+<section class="section light contact" id="registracija">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="overline">Registracija</p>
+        <h2>Rezervuokite <em>savo valandą</em></h2>
+        <p class="lead">Dirbame pagal išankstinę registraciją — kiekvienam klientui visas dėmesys, be skubėjimo ir laukimo.</p>
+        <div>
+          <div class="c-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><b>Adresas</b><span>Vytauto g. 34-A, Marijampolė, 68295 Marijampolės sav.<br>Yra stovėjimo aikštelė · pritaikyta neįgaliesiems</span></div>
+          </div>
+          <div class="c-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span>
+            <div><b>Telefonas</b><span><a href="tel:+37063388662">(0-633) 88662</a></span></div>
+          </div>
+          <div class="c-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div style="flex:1"><b>Darbo laikas</b>
+              <table class="hours" id="hoursTable">
+                <tr data-d="1"><td>Pirmadienis</td><td>14:00–20:00</td></tr>
+                <tr data-d="2"><td>Antradienis</td><td>14:00–20:00</td></tr>
+                <tr data-d="3"><td>Trečiadienis</td><td>14:00–20:00</td></tr>
+                <tr data-d="4"><td>Ketvirtadienis</td><td>14:00–20:00</td></tr>
+                <tr data-d="5"><td>Penktadienis</td><td>14:00–20:00</td></tr>
+                <tr data-d="6"><td>Šeštadienis</td><td>Nedirbame</td></tr>
+                <tr data-d="0"><td>Sekmadienis</td><td>Nedirbame</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="call-card">
+        <p class="overline">MasaRena</p>
+        <a class="num" href="tel:+37063388662">(0-633) 88662</a>
+        <p>Vienas skambutis skiria jus nuo valandos tikros ramybės. Suderinsime laiką ir masažą pagal jūsų poreikius.</p>
+        <a class="btn" href="tel:+37063388662">Skambinti ir registruotis</a>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>Masa<i>Rena</i></b> · Masažai Marijampolėje · © 2026</span>
+    <span>Vytauto g. 34-A · (0-633) 88662</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- kvėpavimo žodis --- */
+  const w=document.getElementById('breathWord');
+  if(reduce){w.textContent='ramybė';}
+  else{
+    const loop=()=>{ w.textContent='įkvėpkite';
+      setTimeout(()=>w.textContent='sulaikykite',3400);
+      setTimeout(()=>w.textContent='iškvėpkite',5000); };
+    loop(); setInterval(loop,9000);
+  }
+
+  /* --- gyvas „atidaryta/uždaryta" statusas (I–V 14:00–20:00) --- */
+  const live=document.getElementById('liveStatus');
+  const liveText=document.getElementById('liveText');
+  const now=new Date(); const d=now.getDay(); const h=now.getHours()+now.getMinutes()/60;
+  const workday=d>=1&&d<=5;
+  if(workday&&h>=14&&h<20){ liveText.textContent='Šiandien dirbame iki 20:00'; }
+  else{
+    live.classList.add('closed');
+    if(workday&&h<14) liveText.textContent='Šiandien atidarome 14:00';
+    else liveText.textContent='Šiuo metu uždaryta · dirbame I–V 14:00–20:00';
+  }
+  document.querySelectorAll('#hoursTable tr').forEach(tr=>{
+    if(+tr.dataset.d===d) tr.classList.add('today');
+  });
+
+  /* --- įtampos žemėlapis --- */
+  const data={
+    sprandas:{tag:'Sprandas ir kaklas',title:'Sustingęs sprandas',
+      text:'Ilgos valandos prie ekrano, telefonas rankoje, stresas — visa tai pirmiausia „apsigyvena" sprande. Tikslingas darbas su kaklo ir pečių juostos raumenimis grąžina laisvą judesį.',
+      rec:'Nugaros ir sprando masažas'},
+    peciai:{tag:'Pečių juosta',title:'Pakelti, įtempti pečiai',
+      text:'Kai pečiai nuolat „prie ausų" — kūnas gyvena parengties režimu. Atpalaidavus pečių juostą, atsileidžia ir kvėpavimas, ir mintys.',
+      rec:'Gydomasis masažas'},
+    nugara:{tag:'Viršutinė nugara',title:'Įtampa tarp menčių',
+      text:'Deginimas ar maudimas tarp menčių — klasikinis sėdimo darbo palydovas. Gilus darbas su šia zona duoda greitai juntamą palengvėjimą.',
+      rec:'Giliųjų audinių masažas'},
+    juosmuo:{tag:'Juosmuo',title:'Pavargęs juosmuo',
+      text:'Juosmuo laiko visą kūno svorį — ir viso streso svorį taip pat. Gydomasis masažas mažina skausmą ir grąžina lankstumą.',
+      rec:'Gydomasis nugaros masažas'},
+    kojos:{tag:'Kojos',title:'Sunkios, tinstančios kojos',
+      text:'Sunkumo jausmas, tinimai vakare, nuovargis po ilgo stovėjimo — ženklai, kad limfai reikia pagalbos. Švelnus ritmiškas masažas paleidžia sąstovį.',
+      rec:'Limfodrenažinis masažas'},
+    visas:{tag:'Visas kūnas',title:'Bendras nuovargis',
+      text:'Kai pavargęs ne raumuo, o visas žmogus — geriausia pradėti nuo viso kūno. Tolygus masažas atstato jėgas ir miego kokybę.',
+      rec:'Klasikinis kūno masažas'}
+  };
+  const panel=document.getElementById('mapPanel');
+  const tag=document.getElementById('mpTag'), title=document.getElementById('mpTitle'),
+        text=document.getElementById('mpText'), rec=document.getElementById('mpRec'),
+        recName=document.getElementById('mpRecName'), hintEl=document.getElementById('mapHint');
+  const zones=document.querySelectorAll('.zone');
+  const visited=new Set();
+  function pick(z){
+    const key=z.dataset.zone, d=data[key];
+    zones.forEach(x=>x.classList.remove('active'));
+    z.classList.add('active'); z.classList.add('done');
+    visited.add(key);
+    tag.textContent=d.tag; title.textContent=d.title; text.textContent=d.text;
+    recName.textContent=d.rec; rec.style.display='flex';
+    panel.classList.add('lit');
+    if(visited.size===zones.length){
+      hintEl.textContent='Visas kūnas atsipalaidavo ✻ Dabar — tikro masažo eilė';
+    }
+  }
+  zones.forEach(z=>{
+    z.addEventListener('click',()=>pick(z));
+    z.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(z);}});
+  });
+
+  /* --- akordeonas --- */
+  document.querySelectorAll('.acc-item').forEach(item=>{
+    const btn=item.querySelector('.acc-btn'), body=item.querySelector('.acc-body');
+    btn.addEventListener('click',()=>{
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(o=>{
+        o.classList.remove('open');
+        o.querySelector('.acc-body').style.maxHeight=null;
+        o.querySelector('.acc-btn').setAttribute('aria-expanded','false');
+      });
+      if(!open){
+        item.classList.add('open');
+        body.style.maxHeight=body.scrollHeight+'px';
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

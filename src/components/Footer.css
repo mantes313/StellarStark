@@ -1,0 +1,42 @@
+/* ---------- Footer ---------- */
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  padding: 4rem 0 2.25rem;
+  min-height: 280px;
+  display: flex;
+  align-items: flex-end;
+  /* Faint grid, echoes the CAD/blueprint texture used elsewhere on the site. */
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+}
+
+/* The starfield canvas sits behind the footer content, filling the section. */
+.footer-constellation {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.wordmark-footer { font-size: 0.95rem; }
+.footer-copy { color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 768px) {
+  .footer { min-height: 220px; padding: 3rem 0 2rem; background-size: 32px 32px; }
+}

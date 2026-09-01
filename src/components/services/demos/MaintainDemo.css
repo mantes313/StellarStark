@@ -1,0 +1,129 @@
+/* ---------- Maintain demo: press "run check", watch it verify itself ---------- */
+
+.maintain-demo {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.maintain-demo-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.maintain-demo-version {
+  height: 1.1rem;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--blueprint);
+}
+.maintain-demo-version-track {
+  display: flex;
+  flex-direction: column;
+}
+.maintain-demo-version-track span { height: 1.1rem; line-height: 1.1rem; }
+.maintain-demo-version-track.is-running-anim {
+  animation-name: maintainVersionRollOnce;
+  animation-duration: 500ms;
+  animation-timing-function: var(--ease-in-out);
+  animation-fill-mode: forwards;
+}
+
+.maintain-demo-shield {
+  width: 30px;
+  height: 30px;
+  color: var(--blueprint);
+  overflow: visible;
+}
+.maintain-demo-shield-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.maintain-demo-shield-path.is-running-anim {
+  animation-name: maintainShieldDrawOnce;
+  animation-duration: 500ms;
+  animation-timing-function: var(--ease-out);
+  animation-delay: 500ms;
+  animation-fill-mode: forwards;
+}
+.maintain-demo-shield-check {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  color: var(--accent);
+}
+.maintain-demo-shield-check.is-running-anim {
+  animation-name: maintainCheckDrawOnce;
+  animation-duration: 400ms;
+  animation-timing-function: var(--ease-out);
+  animation-delay: 950ms;
+  animation-fill-mode: forwards;
+}
+
+.maintain-demo-content {
+  position: relative;
+  flex: 1;
+}
+.maintain-demo-line {
+  position: absolute;
+  inset: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.maintain-demo-line-old { opacity: 1; }
+.maintain-demo-line-new { opacity: 0; color: var(--ink); }
+
+.maintain-demo-line-old.is-running-anim {
+  animation-name: maintainOldOutOnce;
+  animation-duration: 400ms;
+  animation-delay: 900ms;
+  animation-fill-mode: forwards;
+}
+.maintain-demo-line-new.is-running-anim {
+  animation-name: maintainNewInOnce;
+  animation-duration: 400ms;
+  animation-delay: 1000ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes maintainVersionRollOnce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1.1rem); }
+}
+
+@keyframes maintainShieldDrawOnce {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes maintainCheckDrawOnce {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes maintainOldOutOnce {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes maintainNewInOnce {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Settled "verified" look: either a run has finished (is-done, survives
+   the runId remount of the -anim elements) or motion is reduced (is-static,
+   which skips the animated pass and jumps straight to the end state). */
+.maintain-demo.is-done .maintain-demo-version-track,
+.maintain-demo.is-static .maintain-demo-version-track { transform: translateY(-1.1rem); }
+.maintain-demo.is-done .maintain-demo-shield-path,
+.maintain-demo.is-done .maintain-demo-shield-check,
+.maintain-demo.is-static .maintain-demo-shield-path,
+.maintain-demo.is-static .maintain-demo-shield-check { stroke-dashoffset: 0; }
+.maintain-demo.is-done .maintain-demo-line-old,
+.maintain-demo.is-static .maintain-demo-line-old { opacity: 0; }
+.maintain-demo.is-done .maintain-demo-line-new,
+.maintain-demo.is-static .maintain-demo-line-new { opacity: 1; }

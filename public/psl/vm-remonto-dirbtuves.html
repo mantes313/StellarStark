@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V.M. Remonto dirbtuvės — Kavos aparatų remontas Marijampolėje</title>
+<meta name="description" content="Kavos aparatų ir elektros prietaisų remontas Marijampolėje. Greita diagnostika, sąžiningas paaiškinimas, garantija darbams. Saulės g. 37-1.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --roast:#211610;        /* tamsiai skrudinta */
+  --roast-2:#2C1E15;
+  --crema:#F1E4CE;        /* krema */
+  --milk:#FBF6EC;         /* pienas */
+  --copper:#C9803E;       /* varis */
+  --copper-deep:#A9631F;
+  --mocha:#7A5C46;
+  --ink:#2A1F17;
+  --green:#7FA173;
+  --line:rgba(201,128,62,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  background:var(--roast);
+  color:var(--crema);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--copper);color:var(--roast)}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.12;font-weight:600}
+.mono{font-family:'IBM Plex Mono',monospace}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(33,22,16,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{
+  width:38px;height:38px;border-radius:50%;
+  border:2px solid var(--copper);
+  display:grid;place-items:center;flex:none;
+}
+.brand-mark svg{width:20px;height:20px}
+.brand b{font-family:'Fraunces',serif;font-size:17px;letter-spacing:.02em}
+.brand small{display:block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);font-weight:700}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:600}
+.nav-links a{text-decoration:none;opacity:.85;transition:opacity .2s,color .2s}
+.nav-links a:hover{opacity:1;color:var(--copper)}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--copper);color:var(--roast);
+  padding:11px 20px;border-radius:999px;
+  font-weight:800;font-size:14px;text-decoration:none;
+  transition:transform .15s ease, background .2s;
+}
+.btn:hover{background:#DA9350;transform:translateY(-1px)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+@media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  padding:84px 0 96px;
+  background:
+    radial-gradient(900px 480px at 82% -10%, rgba(201,128,62,.16), transparent 65%),
+    radial-gradient(700px 420px at -8% 110%, rgba(201,128,62,.08), transparent 60%),
+    var(--roast);
+}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--copper);font-weight:800;margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--copper)}
+.hero h1{font-size:clamp(38px,5.6vw,64px);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--copper)}
+.hero p.lead{font-size:18px;max-width:52ch;color:rgba(241,228,206,.82);margin-bottom:34px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn.big{padding:15px 28px;font-size:16px}
+.btn.ghost{background:transparent;color:var(--crema);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--copper);background:rgba(201,128,62,.08)}
+.hero-note{margin-top:26px;font-size:13.5px;color:var(--mocha)}
+.hero-note b{color:var(--crema)}
+
+/* gauge — signature */
+.gauge-card{
+  background:var(--roast-2);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:34px 30px 28px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+}
+.gauge-card .label{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);font-weight:800}
+.gauge{width:min(300px,100%);margin:6px auto 0;display:block}
+.gauge-val{font-family:'Fraunces',serif;font-size:52px;font-weight:700;line-height:1;margin-top:-8px}
+.gauge-val span{font-size:20px;color:var(--mocha)}
+.gauge-sub{font-size:13.5px;color:rgba(241,228,206,.7);margin-top:6px}
+.stars{color:var(--copper);letter-spacing:3px;font-size:15px;margin-top:8px}
+@keyframes needleUp{from{transform:rotate(-124deg)}to{transform:rotate(103deg)}}
+#needle{transform-origin:150px 150px;transform:rotate(103deg)}
+.animate #needle{animation:needleUp 1.6s cubic-bezier(.34,1.3,.4,1) .3s both}
+@media(prefers-reduced-motion:reduce){
+  .animate #needle{animation:none}
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:44px}
+  .gauge-card{max-width:420px;margin:0 auto}
+}
+
+/* ---------- ticker ---------- */
+.ticker{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--roast-2);
+  padding:14px 0;overflow:hidden;white-space:nowrap;
+  font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--copper);font-weight:700;
+}
+.ticker span{margin:0 26px}
+
+/* ---------- interaktyvi diagnostika ---------- */
+.diag{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.machine-card{
+  background:var(--roast-2);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:26px 22px 22px;
+  box-shadow:0 30px 60px rgba(42,31,23,.18);
+}
+.machine-card svg{width:100%;height:auto;display:block}
+.machine-card .try{
+  display:flex;justify-content:center;margin-top:14px;
+}
+.brew-btn{
+  font:inherit;cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--copper);color:var(--roast);border:none;
+  padding:12px 24px;border-radius:999px;
+  font-weight:800;font-size:14px;
+  transition:transform .15s ease, background .2s, opacity .2s;
+}
+.brew-btn:hover{background:#DA9350;transform:translateY(-1px)}
+.brew-btn:disabled{opacity:.55;cursor:default;transform:none}
+.brew-btn:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+/* karstos zonos */
+.mzone{cursor:pointer;outline:none}
+.mzone .mhalo{fill:rgba(201,128,62,.12);transition:.2s}
+.mzone .mpulse{fill:rgba(201,128,62,.3);transform-origin:center;transform-box:fill-box;animation:mpulse 2.2s ease-in-out infinite}
+.mzone .mspot{fill:#C9803E;stroke:#211610;stroke-width:1.5}
+.mzone text{fill:rgba(241,228,206,.85);font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;pointer-events:none}
+.mzone:hover .mhalo,.mzone:focus-visible .mhalo,.mzone.on .mhalo{fill:rgba(201,128,62,.28)}
+.mzone.on .mspot{fill:#F1E4CE}
+@keyframes mpulse{0%,100%{transform:scale(.75);opacity:.7}50%{transform:scale(1.15);opacity:.25}}
+/* virimo animacijos */
+.stream{transform-origin:center top;transform-box:fill-box;transform:scaleY(0)}
+.brewing .stream{animation:pour .7s ease-out forwards}
+@keyframes pour{to{transform:scaleY(1)}}
+.cupfill{transform-origin:center bottom;transform-box:fill-box;transform:scaleY(0)}
+.brewing .cupfill{animation:fillcup 3.2s ease-in .5s forwards}
+.brewed .cupfill{transform:scaleY(1)}
+@keyframes fillcup{to{transform:scaleY(1)}}
+.brewing .stream.stop{animation:pour .7s ease-out forwards, pourstop .5s ease-in 3.4s forwards}
+@keyframes pourstop{to{transform:scaleY(0);transform-origin:center bottom}}
+.msteam{opacity:0}
+.brewed .msteam{animation:steamup 2.6s ease-in-out infinite}
+.brewed .msteam.s2{animation-delay:.7s}
+.brewed .msteam.s3{animation-delay:1.4s}
+@keyframes steamup{
+  0%{opacity:0;transform:translateY(6px)}
+  35%{opacity:.55}
+  100%{opacity:0;transform:translateY(-16px)}
+}
+.brew-msg{
+  text-align:center;margin-top:12px;font-size:13.5px;
+  color:rgba(241,228,206,.75);min-height:20px;transition:.3s;
+}
+.brew-msg b{color:var(--copper)}
+/* panelis */
+.diag-panel{padding:8px 0}
+.diag-panel .tag{
+  font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--copper-deep);font-weight:800;margin-bottom:12px;display:block;
+}
+.diag-panel h3{font-size:clamp(22px,2.8vw,30px);margin-bottom:14px;transition:.2s}
+.diag-panel .cause{font-size:15.5px;color:#5c4a3b;margin-bottom:14px;min-height:72px}
+.diag-verdict{
+  display:none;align-items:flex-start;gap:12px;
+  background:rgba(201,128,62,.1);
+  border:1px solid rgba(201,128,62,.3);
+  border-radius:14px;padding:14px 18px;margin-bottom:22px;
+  font-size:14px;color:var(--ink);
+}
+.diag-verdict.show{display:flex}
+.diag-verdict .ic{flex:none;width:20px;height:20px;margin-top:1px}
+.diag-verdict .ic svg{width:20px;height:20px;stroke:var(--copper-deep)}
+.diag-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn.dark-cta{background:var(--roast);color:var(--crema)}
+.btn.dark-cta:hover{background:var(--roast-2)}
+@media(max-width:900px){
+  .diag{grid-template-columns:1fr}
+  .machine-card{max-width:460px;margin:0 auto}
+}
+
+/* ---------- light sections ---------- */
+.light{background:var(--milk);color:var(--ink)}
+.section{padding:88px 0}
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head .eyebrow{color:var(--copper-deep)}
+.sec-head .eyebrow::before{background:var(--copper-deep)}
+.sec-head h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:14px}
+.sec-head p{color:#5c4a3b;font-size:16.5px}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  background:#fff;
+  border:1px solid rgba(122,92,70,.16);
+  border-radius:18px;
+  padding:30px 26px;
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(42,31,23,.10)}
+.card .ic{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(201,128,62,.14);
+  display:grid;place-items:center;margin-bottom:18px;
+}
+.card .ic svg{width:24px;height:24px;stroke:var(--copper-deep)}
+.card h3{font-size:20px;margin-bottom:10px}
+.card p{font-size:14.5px;color:#5c4a3b}
+@media(max-width:860px){.services{grid-template-columns:1fr}}
+
+/* process */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;counter-reset:step}
+.step{padding:26px 20px;border-top:2px solid rgba(122,92,70,.2);position:relative}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--copper-deep);
+  display:block;margin-bottom:12px;font-weight:500;
+}
+.step h3{font-size:17px;margin-bottom:8px}
+.step p{font-size:14px;color:#5c4a3b}
+.step:first-child{border-top-color:var(--copper-deep)}
+@media(max-width:860px){.process{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.process{grid-template-columns:1fr}}
+
+/* ---------- reviews (dark) ---------- */
+.reviews-sec{background:var(--roast)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.review{
+  background:var(--roast-2);
+  border:1px solid var(--line);
+  border-radius:18px;padding:28px 26px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.review .stars{margin-top:0;font-size:13px}
+.review p{font-size:15px;color:rgba(241,228,206,.88);flex:1}
+.review p::before{content:"„"}
+.review p::after{content:"“"}
+.review .who{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;flex:none;
+  background:var(--copper);color:var(--roast);
+  display:grid;place-items:center;
+  font-weight:800;font-size:15px;
+}
+.who b{font-size:14.5px;display:block}
+.who small{font-size:12.5px;color:var(--mocha)}
+@media(max-width:860px){.reviews{grid-template-columns:1fr}}
+.reviews-foot{margin-top:34px;font-size:14px;color:var(--mocha)}
+.reviews-foot a{color:var(--copper);font-weight:700}
+
+/* ---------- contact ---------- */
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.c-list{display:grid;gap:6px}
+.c-row{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:20px 0;border-bottom:1px solid rgba(122,92,70,.18);
+}
+.c-row:last-child{border-bottom:none}
+.c-row .ic{width:42px;height:42px;border-radius:11px;flex:none;background:rgba(201,128,62,.14);display:grid;place-items:center}
+.c-row .ic svg{width:21px;height:21px;stroke:var(--copper-deep)}
+.c-row b{display:block;font-size:15.5px;margin-bottom:2px}
+.c-row span{font-size:14.5px;color:#5c4a3b}
+.c-row a{font-weight:700;text-decoration:none;color:var(--copper-deep)}
+.c-row a:hover{text-decoration:underline}
+.phone-card{
+  background:var(--roast);color:var(--crema);
+  border-radius:22px;padding:40px 36px;
+  position:sticky;top:96px;
+}
+.phone-card .label{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--copper);font-weight:800;margin-bottom:14px}
+.phone-card .num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:clamp(26px,3.4vw,34px);font-weight:500;
+  display:block;text-decoration:none;margin-bottom:10px;
+}
+.phone-card .num:hover{color:var(--copper)}
+.phone-card p{font-size:14.5px;color:rgba(241,228,206,.75);margin-bottom:24px}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--green)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green)}
+@media(max-width:860px){.contact .wrap{grid-template-columns:1fr}.phone-card{position:static}}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:30px 0;background:var(--roast)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mocha)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#virsus" aria-label="V.M. Remonto dirbtuvės">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C9803E" stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/>
+          <path d="M16 9h2a2.5 2.5 0 0 1 0 5h-2"/>
+          <path d="M8 4c0 1-1 1-1 2M12 4c0 1-1 1-1 2"/>
+        </svg>
+      </span>
+      <span><b>V.M. Remonto dirbtuvės</b><small>Kavos aparatų remontas</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Pagrindinė navigacija">
+      <a href="#diagnostika">Diagnostika</a>
+      <a href="#paslaugos">Paslaugos</a>
+      <a href="#kaip">Kaip dirbame</a>
+      <a href="#atsiliepimai">Atsiliepimai</a>
+      <a href="#kontaktai">Kontaktai</a>
+      <a class="btn" href="tel:+37063066996">Skambinti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="virsus">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Marijampolė · Saulės g. 37-1</span>
+      <h1>Jūsų kavos aparatas <em>vėl vers kavą</em> kaip naujas.</h1>
+      <p class="lead">Meistras, kuris ne tik greitai suranda ir pašalina gedimą, bet ir aiškiai paaiškina, iš kur jis atsirado — ir kaip prižiūrėti aparatą, kad problema nesikartotų. Visiems darbams suteikiama garantija.</p>
+      <div class="hero-cta">
+        <a class="btn big" href="tel:+37063066996">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+          (0-630) 66996
+        </a>
+        <a class="btn ghost big" href="#paslaugos">Peržiūrėti paslaugas</a>
+      </div>
+      <p class="hero-note">Remontuojame ir kitus <b>elektros prietaisus</b> — paskambinkite ir aptarsime jūsų gedimą.</p>
+    </div>
+
+    <div class="gauge-card" id="gaugeCard">
+      <span class="label">Klientų įvertinimas</span>
+      <svg class="gauge" viewBox="0 0 300 190" role="img" aria-label="Įvertinimas 4,6 iš 5">
+        <defs>
+          <linearGradient id="arc" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#7A5C46"/>
+            <stop offset="1" stop-color="#C9803E"/>
+          </linearGradient>
+        </defs>
+        <!-- dial arc -->
+        <path d="M 40 165 A 118 118 0 1 1 260 165" fill="none" stroke="rgba(201,128,62,.18)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M 40 165 A 118 118 0 1 1 260 165" fill="none" stroke="url(#arc)" stroke-width="14" stroke-linecap="round" stroke-dasharray="470 512" pathLength="512"/>
+        <!-- ticks 0..5 -->
+        <g stroke="#7A5C46" stroke-width="2">
+          <line x1="52" y1="140" x2="63" y2="134"/>
+          <line x1="72" y1="80" x2="82" y2="88"/>
+          <line x1="150" y1="32" x2="150" y2="45"/>
+          <line x1="228" y1="80" x2="218" y2="88"/>
+          <line x1="248" y1="140" x2="237" y2="134"/>
+        </g>
+        <text x="42" y="185" fill="#7A5C46" font-size="13" font-family="IBM Plex Mono,monospace">0</text>
+        <text x="248" y="185" fill="#7A5C46" font-size="13" font-family="IBM Plex Mono,monospace">5</text>
+        <!-- needle: -124deg = 0, +124deg = 5; 4.6 → 103deg -->
+        <g id="needle">
+          <line x1="150" y1="150" x2="150" y2="52" stroke="#F1E4CE" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <circle cx="150" cy="150" r="11" fill="#C9803E"/>
+        <circle cx="150" cy="150" r="4" fill="#211610"/>
+      </svg>
+      <div class="gauge-val">4,6<span> / 5</span></div>
+      <div class="stars" aria-hidden="true">★★★★★</div>
+      <p class="gauge-sub">33 atsiliepimai „Google“ žemėlapiuose</p>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <span>☕ Kavos aparatų remontas</span><span>⚙ Elektros prietaisų taisymas</span><span>✓ Garantija darbams</span><span>☕ Greita diagnostika</span><span>⚙ Priežiūros konsultacijos</span>
+  <span>☕ Kavos aparatų remontas</span><span>⚙ Elektros prietaisų taisymas</span><span>✓ Garantija darbams</span>
+</div>
+
+<!-- ================= INTERAKTYVI DIAGNOSTIKA ================= -->
+<section class="light section" id="diagnostika">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Interaktyvu</span>
+      <h2>Kas negerai jūsų aparatui?</h2>
+      <p>Spustelėkite šviečiantį tašką ant aparato dalies, kuri kelia įtarimą — pasakysime, kokia dažniausia priežastis ir ar verta remontuoti.</p>
+    </div>
+    <div class="diag">
+      <div class="machine-card">
+        <svg id="machineSvg" viewBox="0 0 360 440" role="group" aria-label="Interaktyvi kavos aparato diagnostika">
+          <!-- korpusas -->
+          <rect x="82" y="92" width="196" height="290" rx="18" fill="#3A2A1D" stroke="rgba(201,128,62,.35)"/>
+          <rect x="72" y="66" width="216" height="30" rx="12" fill="#46331F" stroke="rgba(201,128,62,.35)"/>
+          <!-- pupelių talpa / malūnėlis -->
+          <path d="M146,66 L146,44 Q146,28 180,28 Q214,28 214,44 L214,66 Z" fill="rgba(241,228,206,.12)" stroke="rgba(201,128,62,.5)"/>
+          <ellipse cx="180" cy="44" rx="22" ry="7" fill="#211610"/>
+          <circle cx="172" cy="52" r="3" fill="#5A3316"/><circle cx="184" cy="49" r="3" fill="#5A3316"/><circle cx="190" cy="55" r="2.5" fill="#5A3316"/>
+          <!-- ekranas -->
+          <rect x="102" y="112" width="64" height="30" rx="6" fill="#211610" stroke="rgba(201,128,62,.4)"/>
+          <text id="dispText" x="134" y="132" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="12" fill="#7FA173">92°C</text>
+          <!-- mygtukai -->
+          <circle cx="196" cy="127" r="9" fill="#211610" stroke="#C9803E"/>
+          <circle cx="226" cy="127" r="9" fill="#211610" stroke="rgba(201,128,62,.5)"/>
+          <circle cx="256" cy="127" r="9" fill="#211610" stroke="rgba(201,128,62,.5)"/>
+          <!-- grupė + laikiklis -->
+          <rect x="148" y="168" width="64" height="34" rx="8" fill="#46331F" stroke="rgba(201,128,62,.4)"/>
+          <rect x="210" y="180" width="58" height="10" rx="5" fill="#211610" stroke="rgba(201,128,62,.5)"/>
+          <!-- snapeliai -->
+          <rect x="164" y="202" width="8" height="16" rx="3" fill="#211610"/>
+          <rect x="188" y="202" width="8" height="16" rx="3" fill="#211610"/>
+          <!-- vandens talpa -->
+          <rect x="86" y="150" width="16" height="200" rx="7" fill="rgba(241,228,206,.08)" stroke="rgba(201,128,62,.3)"/>
+          <rect x="88" y="230" width="12" height="118" rx="5" fill="rgba(127,161,115,.35)"/>
+          <!-- garų antgalis -->
+          <path d="M278,190 Q300,200 308,228 L312,252" fill="none" stroke="#8A6B4F" stroke-width="7" stroke-linecap="round"/>
+          <rect x="306" y="250" width="11" height="16" rx="4" fill="#211610" stroke="rgba(201,128,62,.5)"/>
+          <!-- padas -->
+          <rect x="60" y="382" width="240" height="20" rx="9" fill="#46331F" stroke="rgba(201,128,62,.4)"/>
+          <rect x="150" y="376" width="60" height="6" rx="3" fill="#211610"/>
+          <!-- kavos srovės (animuojamos) -->
+          <rect class="stream" x="165" y="218" width="6" height="100" fill="#6B3F1D"/>
+          <rect class="stream" x="189" y="218" width="6" height="100" fill="#6B3F1D"/>
+          <!-- puodelis -->
+          <ellipse cx="180" cy="372" rx="42" ry="7" fill="#211610"/>
+          <path d="M154,318 L160,368 Q161,374 168,374 L192,374 Q199,374 200,368 L206,318 Z" fill="#F1E4CE"/>
+          <path d="M206,326 Q224,328 222,342 Q220,356 202,352" fill="none" stroke="#F1E4CE" stroke-width="6"/>
+          <!-- kavos lygis (animuojamas) -->
+          <path class="cupfill" d="M157,336 L162,366 Q163,371 168,371 L192,371 Q197,371 198,366 L203,336 Z" fill="#5A3316"/>
+          <!-- garai virš puodelio -->
+          <path class="msteam s1" d="M168,308 q-5,-10 0,-19 q5,-9 0,-18" fill="none" stroke="rgba(241,228,206,.6)" stroke-width="3" stroke-linecap="round"/>
+          <path class="msteam s2" d="M180,306 q-5,-10 0,-19 q5,-9 0,-18" fill="none" stroke="rgba(241,228,206,.6)" stroke-width="3" stroke-linecap="round"/>
+          <path class="msteam s3" d="M192,308 q-5,-10 0,-19 q5,-9 0,-18" fill="none" stroke="rgba(241,228,206,.6)" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- diagnostikos zonos -->
+          <g class="mzone" data-fault="malunelis" tabindex="0" role="button" aria-label="Malūnėlis">
+            <circle class="mhalo" cx="180" cy="46" r="24"/>
+            <circle class="mpulse" cx="180" cy="46" r="14"/>
+            <circle class="mspot" cx="180" cy="46" r="6"/>
+            <text x="222" y="42">Malūnėlis</text>
+          </g>
+          <g class="mzone" data-fault="skydas" tabindex="0" role="button" aria-label="Valdymo skydelis">
+            <circle class="mhalo" cx="134" cy="127" r="22"/>
+            <circle class="mpulse" cx="134" cy="127" r="13"/>
+            <circle class="mspot" cx="134" cy="127" r="6"/>
+            <text x="18" y="104">Skydelis</text>
+          </g>
+          <g class="mzone" data-fault="grupe" tabindex="0" role="button" aria-label="Kavos išleidimas">
+            <circle class="mhalo" cx="178" cy="196" r="24"/>
+            <circle class="mpulse" cx="178" cy="196" r="14"/>
+            <circle class="mspot" cx="178" cy="196" r="6"/>
+            <text x="18" y="200">Išleidimas</text>
+          </g>
+          <g class="mzone" data-fault="garai" tabindex="0" role="button" aria-label="Garų antgalis">
+            <circle class="mhalo" cx="310" cy="240" r="22"/>
+            <circle class="mpulse" cx="310" cy="240" r="13"/>
+            <circle class="mspot" cx="310" cy="240" r="6"/>
+            <text x="286" y="288">Garai</text>
+          </g>
+          <g class="mzone" data-fault="talpa" tabindex="0" role="button" aria-label="Vandens talpa">
+            <circle class="mhalo" cx="94" cy="260" r="22"/>
+            <circle class="mpulse" cx="94" cy="260" r="13"/>
+            <circle class="mspot" cx="94" cy="260" r="6"/>
+            <text x="18" y="308">Vanduo</text>
+          </g>
+          <g class="mzone" data-fault="padas" tabindex="0" role="button" aria-label="Nuotėkis po aparatu">
+            <circle class="mhalo" cx="262" cy="392" r="20"/>
+            <circle class="mpulse" cx="262" cy="392" r="12"/>
+            <circle class="mspot" cx="262" cy="392" r="6"/>
+            <text x="290" y="396">Bala?</text>
+          </g>
+        </svg>
+        <div class="try">
+          <button class="brew-btn" id="brewBtn" type="button">☕ Išbandykite — suvirkite espresą</button>
+        </div>
+        <p class="brew-msg" id="brewMsg"></p>
+      </div>
+
+      <div class="diag-panel" aria-live="polite">
+        <span class="tag" id="dTag">Diagnostika</span>
+        <h3 id="dTitle">Jūsų aparatas kalba — mes verčiame</h3>
+        <p class="cause" id="dCause">Pasirinkite tašką ant aparato: malūnėlį, skydelį, kavos išleidimą, garų antgalį, vandens sistemą ar nuotėkį apačioje. Parodysime dažniausią priežastį.</p>
+        <div class="diag-verdict" id="dVerdict">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          <span id="dVerdictText"></span>
+        </div>
+        <div class="diag-actions">
+          <a class="btn" href="tel:+37063066996" id="dCall">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+            Aptarti gedimą telefonu
+          </a>
+          <a class="btn ghost dark-cta" href="#paslaugos" style="color:var(--ink);border-color:rgba(122,92,70,.35)">Visos paslaugos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light section" id="paslaugos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Kuo užsiimame</span>
+      <h2>Nuo kavos aparato iki buitinės elektros technikos</h2>
+      <p>Dirbtuvės specializuojasi kavos aparatų remonte, tačiau meistro rankos tinka ir kitiems elektros prietaisams.</p>
+    </div>
+    <div class="services">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h12v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M16 9h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 4c0 1-1 1-1 2M12 4c0 1-1 1-1 2"/></svg></div>
+        <h3>Kavos aparatų remontas</h3>
+        <p>Automatinių ir pusiau automatinių aparatų gedimų diagnostika ir taisymas: nuo kalkių problemų iki elektronikos. Visų populiarių gamintojų technika.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z"/></svg></div>
+        <h3>Elektros prietaisų taisymas</h3>
+        <p>Buitinės elektros technikos gedimų šalinimas. Sąžiningas įvertinimas — jei remontas neapsimoka, pasakysime tiesiai.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Priežiūra ir garantija</h3>
+        <p>Po remonto — aiškus paaiškinimas, kaip prižiūrėti aparatą, kad gedimas nesikartotų, ir garantija atliktiems darbams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light section" id="kaip" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Kaip dirbame</span>
+      <h2>Aiškiai, greitai ir su garantija</h2>
+    </div>
+    <div class="process">
+      <div class="step"><h3>Paskambinate</h3><p>Trumpai apibūdinate gedimą telefonu — iškart pasakysime, ar galime padėti.</p></div>
+      <div class="step"><h3>Diagnostika</h3><p>Meistras suranda problemą ir paaiškina, iš kur ji atsirado.</p></div>
+      <div class="step"><h3>Remontas</h3><p>Gedimas šalinamas greitai ir kokybiškai, naudojant tinkamas dalis.</p></div>
+      <div class="step"><h3>Patarimai + garantija</h3><p>Gaunate priežiūros instrukciją žingsnis po žingsnio ir darbų garantiją.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews-sec" id="atsiliepimai">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Atsiliepimai</span>
+      <h2 style="color:var(--crema)">Ką sako klientai</h2>
+    </div>
+    <div class="reviews">
+      <article class="review">
+        <div class="stars" aria-label="5 žvaigždutės">★★★★★</div>
+        <p>Nuoširdžios rekomendacijos tiems, kas ieško patikimo, puikiai savo darbą išmanančio meistro. Ne tik greitai pataisė kavos aparatą, bet ir informavo, kaip jį tinkamai prižiūrėti, kad nesugestų.</p>
+        <div class="who"><span class="avatar">K</span><span><b>Kamilė K.</b><small>Google atsiliepimas</small></span></div>
+      </article>
+      <article class="review">
+        <div class="stars" aria-label="5 žvaigždutės">★★★★★</div>
+        <p>Meistras — tikrai savo srities profesionalas! Dirba greitai ir kokybiškai, malonus aptarnavimas. Likome labai patenkinti atliktu darbu ir suteikta informacija.</p>
+        <div class="who"><span class="avatar">J</span><span><b>Jolanta B.</b><small>Google atsiliepimas</small></span></div>
+      </article>
+      <article class="review">
+        <div class="stars" aria-label="5 žvaigždutės">★★★★★</div>
+        <p>Greitos paslaugos: profesionalus, informatyvus, konkretus, atsakingas. Suranda problemą, paaiškina, iš kur atsirado, o sutvarkęs dar kartą išaiškina, kaip aparatą prižiūrėti, ir suteikia garantiją.</p>
+        <div class="who"><span class="avatar">S</span><span><b>Stasys Ž.</b><small>Vietos gidas · Google</small></span></div>
+      </article>
+    </div>
+    <p class="reviews-foot">Iš viso — <b style="color:var(--crema)">33 atsiliepimai</b>, vidurkis <b style="color:var(--crema)">4,6 / 5</b>. Daugiau atsiliepimų rasite <a href="https://www.google.com/maps/search/V.M.+Remonto+dirbtuv%C4%97s+Marijampol%C4%97" target="_blank" rel="noopener">Google žemėlapiuose</a>.</p>
+  </div>
+</section>
+
+<section class="light section contact" id="kontaktai">
+  <div class="wrap">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <span class="eyebrow">Kontaktai</span>
+        <h2>Atvažiuokite arba paskambinkite</h2>
+      </div>
+      <div class="c-list">
+        <div class="c-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Adresas</b><span>Saulės g. 37-1, Marijampolė, 68271 Marijampolės sav.<br><span class="mono" style="font-size:12.5px">Plus kodas: G9V7+J9 Marijampolė</span></span></div>
+        </div>
+        <div class="c-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span>
+          <div><b>Telefonas</b><span><a href="tel:+37063066996">(0-630) 66996</a></span></div>
+        </div>
+        <div class="c-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><b>Darbo laikas</b><span>Dirbame darbo dienomis nuo 9:00. Prieš atvykdami rekomenduojame paskambinti ir susitarti dėl laiko.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="phone-card">
+      <div class="label">Sugedo kavos aparatas?</div>
+      <a class="num" href="tel:+37063066996">(0-630) 66996</a>
+      <p>Paskambinkite, trumpai apibūdinkite gedimą — pasakysime, ar galime padėti, ir susitarsime dėl atvežimo.</p>
+      <span class="status">Priimame užsakymus</span>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 V.M. Remonto dirbtuvės · Kavos aparatų ir elektros prietaisų remontas</span>
+    <span>Saulės g. 37-1, Marijampolė · <a href="tel:+37063066996" style="color:var(--copper);text-decoration:none">(0-630) 66996</a></span>
+  </div>
+</footer>
+
+<script>
+// gauge needle animation when it scrolls into view
+const card=document.getElementById('gaugeCard');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(e=>{
+    e.forEach(x=>{if(x.isIntersecting){card.classList.add('animate');io.disconnect();}});
+  },{threshold:.4});
+  io.observe(card);
+}else{card.classList.add('animate');}
+
+/* ---------- interaktyvi diagnostika ---------- */
+(function(){
+  const faults={
+    malunelis:{
+      t:'Girgžda, mala netolygiai arba visai nemala',
+      c:'Dažniausiai kaltos susidėvėjusios arba akmenuko užstrigdytos malūnėlio girnos. Kartais pakanka gero išvalymo, kartais reikia keisti girnas.',
+      v:'Remontas beveik visada apsimoka — malūnėlio keitimas kainuoja gerokai mažiau nei naujas aparatas.'
+    },
+    skydas:{
+      t:'Mirksi lemputės, ekranas rodo klaidą',
+      c:'Tai elektronikos ar daviklių signalas. Klaidos kodas pasako labai daug — padiktuokite jį telefonu, ir dažnai jau žinosime, kur ieškoti.',
+      v:'Diagnostika parodys tiksliai. Jei remontas neapsimoka — pasakysime tiesiai.'
+    },
+    grupe:{
+      t:'Kava teka silpnai, laša arba visai neteka',
+      c:'Dažniausias visų kavos aparatų gedimas: kalkės ir užsikimšusi kavos sistema. Po profesionalaus išvalymo aparatas dažnai veikia kaip naujas.',
+      v:'Greitas ir vienas pigiausių remontų — nedelskite, kol neužsikimšo daugiau.'
+    },
+    garai:{
+      t:'Nešildo pieno, nepučia garų',
+      c:'Dažniausiai užkalkėjęs garų kontūras arba pavargęs kaitinimo elementas. Abu atvejai — įprastas dirbtuvių darbas.',
+      v:'Po remonto paaiškinsime, kaip prižiūrėti, kad garintuvas neužkalkėtų iš naujo.'
+    },
+    talpa:{
+      t:'Burzgia, bet nesiurbia vandens',
+      c:'Oro kamštis sistemoje arba nusidėvėjęs vandens siurblys. Siurblio keitimas — įprastas ir greitas remontas.',
+      v:'Prieš vežant verta patikrinti, ar gerai įstatyta talpa — kartais to ir užtenka.'
+    },
+    padas:{
+      t:'Po aparatu atsiranda vandens',
+      c:'Sukietėję sandarikliai arba įtrūkusi žarnelė. Svarbu nedelsti — tekantis vanduo gali pasiekti elektroniką ir gedimą pabranginti.',
+      v:'Kuo anksčiau atvešite, tuo pigesnis remontas.'
+    }
+  };
+  const zones=[...document.querySelectorAll('.mzone')];
+  const dTag=document.getElementById('dTag');
+  const dTitle=document.getElementById('dTitle');
+  const dCause=document.getElementById('dCause');
+  const dVerdict=document.getElementById('dVerdict');
+  const dVerdictText=document.getElementById('dVerdictText');
+
+  function pick(z){
+    const f=faults[z.dataset.fault];
+    if(!f)return;
+    zones.forEach(x=>x.classList.remove('on'));
+    z.classList.add('on');
+    dTag.textContent='Diagnozė';
+    dTitle.textContent=f.t;
+    dCause.textContent=f.c;
+    dVerdictText.textContent=f.v;
+    dVerdict.classList.add('show');
+  }
+  zones.forEach(z=>{
+    z.addEventListener('click',()=>pick(z));
+    z.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(z);}
+    });
+  });
+
+  /* espreso virimas */
+  const svg=document.getElementById('machineSvg');
+  const btn=document.getElementById('brewBtn');
+  const msg=document.getElementById('brewMsg');
+  const disp=document.getElementById('dispText');
+  const streams=[...svg.querySelectorAll('.stream')];
+  let busy=false;
+  btn.addEventListener('click',()=>{
+    if(busy)return;
+    busy=true;btn.disabled=true;
+    svg.classList.remove('brewed');
+    void svg.getBoundingClientRect();
+    svg.classList.add('brewing');
+    streams.forEach(s=>s.classList.add('stop'));
+    disp.textContent='VERDA…';
+    msg.textContent='Malame, spaudžiame, pilame…';
+    setTimeout(()=>{
+      svg.classList.remove('brewing');
+      streams.forEach(s=>s.classList.remove('stop'));
+      svg.classList.add('brewed');
+      disp.textContent='SKANAUS';
+      msg.innerHTML='Šis aparatas veikia puikiai. Jei jūsiškis taip nebedaro — <b>žinote, kam skambinti.</b>';
+      btn.textContent='☕ Suvirti dar vieną';
+      btn.disabled=false;busy=false;
+      setTimeout(()=>{disp.textContent='92°C';},4000);
+    },4200);
+  });
+})();
+</script>
+</body>
+</html>

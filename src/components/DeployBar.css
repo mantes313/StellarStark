@@ -1,0 +1,12 @@
+/* ---------- Deploy sweep (feedback for live accent updates) ---------- */
+
+.deploy-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 60;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}

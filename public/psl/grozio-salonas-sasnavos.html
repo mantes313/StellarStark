@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grožio salonas — Sasnavos g. 4, Marijampolė</title>
+<meta name="description" content="Grožio salonas Marijampolėje, Sasnavos g. 4. Manikiūras, gelinis lakavimas, pedikiūras. Registracija tel. (0-658) 33457. Klientų įvertinimas 5,0.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Karla:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FBF6F2;         /* šiltas salono baltumas */
+  --berry:#5E1F38;         /* gili uoga */
+  --berry-2:#7A2C4B;
+  --pink:#F3CBD6;          /* pudrinė */
+  --lacquer:#C2255C;       /* lako akcentas */
+  --ink:#3A2530;
+  --soft:#8A6C79;
+  --gold:#C9A15E;
+  --line:rgba(94,31,56,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Karla',system-ui,sans-serif;font-weight:400;
+  background:var(--cream);color:var(--ink);line-height:1.65;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--lacquer);color:#fff}
+h1,h2,h3{font-family:'Prata',Georgia,serif;font-weight:400;line-height:1.15}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--lacquer);outline-offset:3px}
+
+/* ===== header ===== */
+header{position:fixed;inset:0 0 auto;z-index:60;background:rgba(251,246,242,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand .drop{width:14px;height:20px;background:var(--lacquer);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(12deg)}
+.brand b{font-family:'Prata',serif;font-size:19px;letter-spacing:.01em}
+.nav-links{display:flex;gap:26px;align-items:center;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;opacity:.8;transition:.25s}
+.nav-links a:hover{opacity:1;color:var(--lacquer)}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--berry);color:#fff;
+  padding:12px 26px;border-radius:999px;
+  font-weight:700;font-size:13.5px;letter-spacing:.05em;
+  text-decoration:none;transition:transform .2s, background .25s, box-shadow .25s;
+}
+.btn:hover{background:var(--lacquer);transform:translateY(-1px);box-shadow:0 12px 26px rgba(194,37,92,.28)}
+.btn.ghost{background:transparent;color:var(--berry);border:1.5px solid rgba(94,31,56,.3)}
+.btn.ghost:hover{border-color:var(--lacquer);color:var(--lacquer);background:rgba(194,37,92,.05);box-shadow:none}
+@media(max-width:780px){.nav-links a:not(.btn){display:none}}
+
+/* ===== hero su nagų studija ===== */
+.hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:120px 0 80px}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.55}
+.blob.b1{width:520px;height:520px;background:#F6D7E1;top:-140px;right:-120px;animation:float 16s ease-in-out infinite alternate}
+.blob.b2{width:420px;height:420px;background:#F1E3D3;bottom:-140px;left:-100px;animation:float 20s ease-in-out infinite alternate-reverse}
+@keyframes float{from{transform:translate(0,0)}to{transform:translate(-40px,36px)}}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.overline{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--lacquer);font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.overline::before{content:"";width:40px;height:1px;background:var(--lacquer)}
+.hero h1{font-size:clamp(38px,5.4vw,66px);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--lacquer)}
+.hero .lead{font-size:17px;max-width:44ch;color:var(--soft);margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.score{display:flex;align-items:center;gap:12px;margin-top:30px}
+.score .stars{color:var(--gold);letter-spacing:3px;font-size:16px}
+.score span{font-size:13.5px;color:var(--soft)}
+.score b{color:var(--ink)}
+
+/* nagų studija */
+.studio{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:30px 28px 26px;
+  box-shadow:0 34px 70px rgba(94,31,56,.12);
+}
+.studio .s-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.studio .s-head h3{font-size:19px}
+.studio .cname{
+  font-size:13px;font-weight:700;color:var(--lacquer);
+  letter-spacing:.06em;min-width:90px;text-align:right;transition:.2s;
+}
+.hand-box{position:relative;display:grid;place-items:center;padding:6px 0 0}
+.hand-box::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:56px;
+  background:linear-gradient(transparent,#fff);pointer-events:none;
+}
+.hand-box svg{width:min(320px,100%);height:auto}
+.skin{fill:#F1D2BE}
+.skin-line{fill:none;stroke:#DDB49C;stroke-width:1.2;stroke-linecap:round}
+.nail{transition:fill .25s;stroke:rgba(0,0,0,.08);stroke-width:.6}
+.nail-shine{fill:#fff;opacity:.35;pointer-events:none}
+@keyframes gloss{0%{opacity:0;transform:translateX(-14px)}40%{opacity:.65}100%{opacity:.3;transform:translateX(0)}}
+.glossed .nail-shine{animation:gloss .6s ease-out}
+.tip{fill:#FFF7F2;opacity:0;transition:opacity .25s;pointer-events:none}
+.french .tip{opacity:1}
+.matte .nail-shine{opacity:0!important}
+.glitter-dot{fill:#fff;opacity:0;pointer-events:none}
+.glitter .glitter-dot{opacity:.85;animation:twinkle 1.3s ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.25;transform:scale(.8)}100%{opacity:.95;transform:scale(1.15)}}
+.style-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.style-row .chip-toggle{font-size:12px;padding:7px 14px}
+
+.palette{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:14px}
+.sw{
+  aspect-ratio:1;border-radius:50%;position:relative;
+  border:2px solid transparent;transition:transform .15s, border-color .2s;
+  box-shadow:inset 0 -3px 6px rgba(0,0,0,.15), inset 0 3px 5px rgba(255,255,255,.4);
+}
+.sw:hover{transform:scale(1.14)}
+.sw.on{border-color:var(--berry);transform:scale(1.14)}
+.sw.gold{background:linear-gradient(135deg,#E8C87E,#B98A3E 60%,#E8C87E)}
+.opts{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.chip-toggle{
+  font-size:12.5px;font-weight:700;letter-spacing:.05em;
+  padding:8px 16px;border-radius:999px;
+  border:1.5px solid rgba(94,31,56,.25);color:var(--berry);
+  transition:.2s;
+}
+.chip-toggle:hover{border-color:var(--lacquer);color:var(--lacquer)}
+.chip-toggle.on{background:var(--berry);border-color:var(--berry);color:#fff}
+.studio-cta{margin-top:18px;text-align:center}
+.studio-cta a{font-size:13.5px;color:var(--lacquer);font-weight:700;text-decoration:none}
+.studio-cta a:hover{text-decoration:underline}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:44px;text-align:center}
+  .overline,.hero-cta,.score{justify-content:center}
+  .hero .lead{margin-inline:auto}
+  .studio{max-width:440px;margin:0 auto}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ===== sekcijos ===== */
+.section{padding:96px 0;position:relative}
+.sec-head{text-align:center;max-width:620px;margin:0 auto 54px}
+.sec-head .overline{justify-content:center;margin-bottom:16px}
+.sec-head h2{font-size:clamp(30px,4vw,48px);margin-bottom:14px}
+.sec-head p{color:var(--soft);font-size:15.5px}
+.dark{background:var(--berry);color:#FBF2F0}
+.dark .sec-head p{color:rgba(251,242,240,.7)}
+.dark .overline{color:var(--pink)}
+.dark .overline::before{background:var(--pink)}
+
+/* ===== vizito konstruktorius ===== */
+.builder{max-width:820px;margin:0 auto}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.chip{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 22px;border-radius:999px;
+  border:1.5px solid rgba(251,242,240,.35);
+  font-size:14.5px;font-weight:500;color:#FBF2F0;
+  transition:.2s;
+}
+.chip .tick{
+  width:18px;height:18px;border-radius:50%;flex:none;
+  border:1.5px solid rgba(251,242,240,.5);
+  display:grid;place-items:center;font-size:11px;transition:.2s;
+}
+.chip:hover{border-color:var(--pink);transform:translateY(-2px)}
+.chip.on{background:var(--pink);border-color:var(--pink);color:var(--berry)}
+.chip.on .tick{background:var(--berry);border-color:var(--berry);color:var(--pink)}
+.plan{
+  margin-top:36px;background:rgba(251,242,240,.07);
+  border:1px solid rgba(251,242,240,.2);
+  border-radius:20px;padding:30px 30px;
+  text-align:center;transition:.3s;
+}
+.plan.active{background:rgba(243,203,214,.12);border-color:var(--pink)}
+.plan .lbl{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:12px}
+.plan .msg{
+  font-family:'Prata',serif;font-size:clamp(18px,2.6vw,24px);line-height:1.4;
+  min-height:60px;color:#FBF2F0;
+}
+.plan .msg em{font-style:italic;color:var(--pink)}
+.plan .p-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.btn.pinkbtn{background:var(--pink);color:var(--berry)}
+.btn.pinkbtn:hover{background:#F7DAE2;box-shadow:0 12px 26px rgba(243,203,214,.25)}
+.btn.line{background:transparent;color:#FBF2F0;border:1.5px solid rgba(251,242,240,.35)}
+.btn.line:hover{border-color:var(--pink);color:var(--pink);background:transparent;box-shadow:none}
+.copied{font-size:12.5px;color:var(--pink);margin-top:12px;min-height:18px}
+
+/* ===== atsiliepimai ===== */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review{
+  background:#fff;border:1px solid var(--line);border-radius:20px;
+  padding:30px 26px;display:flex;flex-direction:column;gap:14px;
+  transition:transform .2s, box-shadow .2s;
+}
+.review:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(94,31,56,.1)}
+.review .stars{color:var(--gold);letter-spacing:3px;font-size:14px}
+.review p{font-size:14.5px;color:var(--ink);flex:1}
+.review p::before{content:"„"}.review p::after{content:"“"}
+.review b{font-size:13.5px;color:var(--berry)}
+.review small{display:block;font-size:12px;color:var(--soft)}
+@media(max-width:820px){.reviews{grid-template-columns:1fr}}
+.rev-badge{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:40px;
+}
+.rev-badge .big{font-family:'Prata',serif;font-size:64px;color:var(--berry);line-height:1}
+.rev-badge .side{font-size:13.5px;color:var(--soft)}
+.rev-badge .side .stars{color:var(--gold);letter-spacing:3px;font-size:15px;display:block}
+.rev-foot{text-align:center;margin-top:30px;font-size:14px;color:var(--soft)}
+.rev-foot a{color:var(--lacquer);font-weight:700}
+
+/* ===== kontaktai ===== */
+.contact{background:#fff;border-top:1px solid var(--line)}
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.contact h2{font-size:clamp(30px,4vw,46px);margin-bottom:16px}
+.contact .lead{color:var(--soft);font-size:15.5px;margin-bottom:30px;max-width:44ch}
+.c-row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.c-row:last-child{border-bottom:none}
+.c-row .ic{width:42px;height:42px;border-radius:50%;flex:none;background:var(--cream);border:1px solid var(--line);display:grid;place-items:center}
+.c-row .ic svg{width:19px;height:19px;stroke:var(--lacquer)}
+.c-row b{display:block;font-size:15px;font-weight:700;margin-bottom:2px}
+.c-row span{font-size:14.5px;color:var(--soft)}
+.c-row a{color:var(--lacquer);font-weight:700;text-decoration:none}
+.c-row a:hover{text-decoration:underline}
+.call-card{
+  background:var(--berry);color:#FBF2F0;border-radius:26px;
+  padding:50px 42px;text-align:center;position:relative;overflow:hidden;
+}
+.call-card::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(243,203,214,.16);filter:blur(60px);top:-100px;right:-80px}
+.call-card .overline{justify-content:center;color:var(--pink);margin-bottom:16px}
+.call-card .overline::before{background:var(--pink)}
+.call-card .num{font-family:'Prata',serif;font-size:clamp(30px,3.6vw,42px);display:block;text-decoration:none;margin-bottom:12px;position:relative}
+.call-card .num:hover{color:var(--pink)}
+.call-card p{font-size:14.5px;color:rgba(251,242,240,.75);margin-bottom:26px;position:relative}
+@media(max-width:860px){.contact .grid{grid-template-columns:1fr}}
+
+footer{padding:28px 0;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--soft)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#virsus"><span class="drop" aria-hidden="true"></span><b>Grožio salonas</b></a>
+    <nav class="nav-links" aria-label="Navigacija">
+      <a href="#spalvos">Išbandykite spalvą</a>
+      <a href="#vizitas">Susidėliokite vizitą</a>
+      <a href="#atsiliepimai">Atsiliepimai</a>
+      <a href="#kontaktai">Kontaktai</a>
+      <a class="btn" href="tel:+37065833457">Registruotis</a>
+    </nav>
+  </div>
+</header>
+
+<main id="virsus">
+<!-- ================= HERO + NAGŲ STUDIJA ================= -->
+<section class="hero" id="spalvos">
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <p class="overline">Grožio salonas · Marijampolė</p>
+      <h1>Išsirinkite spalvą <em>dar prieš vizitą.</em></h1>
+      <p class="lead">Pažaiskite su mūsų virtualia paletė — pasimatuokite lako spalvą, formą ar prancūzišką manikiūrą. O tikrąjį grožį sukurs kruopščios ir atidžios meistrės rankos Sasnavos gatvėje.</p>
+      <div class="hero-cta">
+        <a class="btn" href="tel:+37065833457">Registruotis telefonu</a>
+        <a class="btn ghost" href="#vizitas">Susidėlioti vizitą</a>
+      </div>
+      <div class="score">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span><b>5,0</b> · 8 atsiliepimai Google</span>
+      </div>
+    </div>
+
+    <!-- interaktyvi nagų studija -->
+    <div class="studio" id="studio" role="group" aria-label="Virtuali nagų spalvų studija">
+      <div class="s-head">
+        <h3>Nagų studija</h3>
+        <span class="cname" id="cname">Vyšnia</span>
+      </div>
+      <div class="hand-box" id="handBox">
+        <svg viewBox="0 0 380 320" aria-hidden="true">
+          <defs>
+            <linearGradient id="skingrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#F5DAC8"/>
+              <stop offset="1" stop-color="#E9C0A8"/>
+            </linearGradient>
+            <clipPath id="n1"><ellipse cx="84"  cy="151"   rx="13"   ry="19"/></clipPath>
+            <clipPath id="n2"><ellipse cx="136" cy="107.5" rx="14.5" ry="21"/></clipPath>
+            <clipPath id="n3"><ellipse cx="192" cy="90.5"  rx="15"   ry="22"/></clipPath>
+            <clipPath id="n4"><ellipse cx="247" cy="117"   rx="14"   ry="20.5"/></clipPath>
+            <clipPath id="n5"><ellipse cx="300" cy="209"   rx="13"   ry="17"/></clipPath>
+          </defs>
+
+          <!-- mažylis -->
+          <g transform="rotate(-7 84 330)">
+            <rect fill="url(#skingrad)" stroke="#DDB49C" stroke-width="1" x="63" y="128" width="42" height="220" rx="21"/>
+            <path class="skin-line" d="M72 218 q12 6 24 0"/>
+            <path class="skin-line" d="M72 278 q12 6 24 0"/>
+            <g clip-path="url(#n1)">
+              <ellipse class="nail" cx="84" cy="151" rx="13" ry="19"/>
+              <rect class="tip" x="71" y="132" width="26" height="12"/>
+              <ellipse class="nail-shine" cx="79" cy="143" rx="3.5" ry="8"/>
+              <circle class="glitter-dot" cx="80" cy="146" r="1.5"/>
+              <circle class="glitter-dot" cx="89" cy="156" r="1.2" style="animation-delay:.3s"/>
+            </g>
+          </g>
+
+          <!-- bevardis -->
+          <g transform="rotate(-2.5 136 330)">
+            <rect fill="url(#skingrad)" stroke="#DDB49C" stroke-width="1" x="112.5" y="82" width="47" height="266" rx="23.5"/>
+            <path class="skin-line" d="M123 180 q13 6 26 0"/>
+            <path class="skin-line" d="M123 248 q13 6 26 0"/>
+            <g clip-path="url(#n2)">
+              <ellipse class="nail" cx="136" cy="107.5" rx="14.5" ry="21"/>
+              <rect class="tip" x="121.5" y="86.5" width="29" height="13"/>
+              <ellipse class="nail-shine" cx="130" cy="99" rx="3.8" ry="9"/>
+              <circle class="glitter-dot" cx="131" cy="102" r="1.6" style="animation-delay:.6s"/>
+              <circle class="glitter-dot" cx="142" cy="113" r="1.2" style="animation-delay:.15s"/>
+            </g>
+          </g>
+
+          <!-- didysis -->
+          <g transform="rotate(2 192 330)">
+            <rect fill="url(#skingrad)" stroke="#DDB49C" stroke-width="1" x="167.5" y="64" width="49" height="284" rx="24.5"/>
+            <path class="skin-line" d="M178 166 q14 6 28 0"/>
+            <path class="skin-line" d="M178 236 q14 6 28 0"/>
+            <g clip-path="url(#n3)">
+              <ellipse class="nail" cx="192" cy="90.5" rx="15" ry="22"/>
+              <rect class="tip" x="177" y="68.5" width="30" height="13.5"/>
+              <ellipse class="nail-shine" cx="186" cy="82" rx="4" ry="9.5"/>
+              <circle class="glitter-dot" cx="187" cy="86" r="1.6" style="animation-delay:.45s"/>
+              <circle class="glitter-dot" cx="198" cy="97" r="1.3" style="animation-delay:.05s"/>
+            </g>
+          </g>
+
+          <!-- smilius -->
+          <g transform="rotate(6.5 247 330)">
+            <rect fill="url(#skingrad)" stroke="#DDB49C" stroke-width="1" x="224" y="92" width="46" height="256" rx="23"/>
+            <path class="skin-line" d="M234 188 q13 6 26 0"/>
+            <path class="skin-line" d="M234 254 q13 6 26 0"/>
+            <g clip-path="url(#n4)">
+              <ellipse class="nail" cx="247" cy="117" rx="14" ry="20.5"/>
+              <rect class="tip" x="233" y="96.5" width="28" height="12.5"/>
+              <ellipse class="nail-shine" cx="241" cy="109" rx="3.8" ry="8.5"/>
+              <circle class="glitter-dot" cx="242" cy="112" r="1.5" style="animation-delay:.25s"/>
+              <circle class="glitter-dot" cx="253" cy="122" r="1.2" style="animation-delay:.5s"/>
+            </g>
+          </g>
+
+          <!-- nykštys -->
+          <g transform="rotate(26 300 335)">
+            <rect fill="url(#skingrad)" stroke="#DDB49C" stroke-width="1" x="278" y="185" width="44" height="170" rx="22"/>
+            <path class="skin-line" d="M289 272 q12 6 24 0"/>
+            <g clip-path="url(#n5)">
+              <ellipse class="nail" cx="300" cy="209" rx="13" ry="17"/>
+              <rect class="tip" x="287" y="192" width="26" height="11"/>
+              <ellipse class="nail-shine" cx="295" cy="202" rx="3.5" ry="7"/>
+              <circle class="glitter-dot" cx="296" cy="205" r="1.4" style="animation-delay:.35s"/>
+              <circle class="glitter-dot" cx="305" cy="213" r="1.1" style="animation-delay:.1s"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div class="palette" id="palette" role="listbox" aria-label="Lako spalvos">
+        <button class="sw" data-c="#E8C4B0" data-n="Nude" style="background:#E8C4B0" aria-label="Nude"></button>
+        <button class="sw" data-c="#F2A6C0" data-n="Rožinė" style="background:#F2A6C0" aria-label="Rožinė"></button>
+        <button class="sw" data-c="#F0705A" data-n="Koralas" style="background:#F0705A" aria-label="Koralas"></button>
+        <button class="sw" data-c="#D01F2E" data-n="Raudona" style="background:#D01F2E" aria-label="Raudona"></button>
+        <button class="sw on" data-c="#A31B3C" data-n="Vyšnia" style="background:#A31B3C" aria-label="Vyšnia"></button>
+        <button class="sw" data-c="#5E1330" data-n="Bordo" style="background:#5E1330" aria-label="Bordo"></button>
+        <button class="sw" data-c="#D6367E" data-n="Fuksija" style="background:#D6367E" aria-label="Fuksija"></button>
+        <button class="sw" data-c="#B48CD9" data-n="Alyvinė" style="background:#B48CD9" aria-label="Alyvinė"></button>
+        <button class="sw" data-c="#3E6FB0" data-n="Mėlyna" style="background:#3E6FB0" aria-label="Mėlyna"></button>
+        <button class="sw" data-c="#1F7A5C" data-n="Smaragdas" style="background:#1F7A5C" aria-label="Smaragdas"></button>
+        <button class="sw" data-c="#F4F0EC" data-n="Pieno balta" style="background:#F4F0EC" aria-label="Pieno balta"></button>
+        <button class="sw" data-c="#221E24" data-n="Juoda" style="background:#221E24" aria-label="Juoda"></button>
+        <button class="sw gold" data-c="gold" data-n="Aukso žėrutis" aria-label="Aukso žėrutis"></button>
+        <button class="sw" data-c="#EFD9CE" data-n="Perlamutras" style="background:linear-gradient(135deg,#F6E7DF,#E3C6BD)" aria-label="Perlamutras"></button>
+      </div>
+
+      <div class="style-row" id="styleRow" role="radiogroup" aria-label="Nagų stilius">
+        <button class="chip-toggle style-chip on" data-style="classic" aria-pressed="true">Klasika</button>
+        <button class="chip-toggle style-chip" data-style="french" aria-pressed="false">Prancūziškas</button>
+        <button class="chip-toggle style-chip" data-style="matte" aria-pressed="false">Matinis</button>
+        <button class="chip-toggle style-chip" data-style="glitter" aria-pressed="false">Blizgus</button>
+      </div>
+      <div class="opts">
+        <span style="flex:1"></span>
+        <button class="chip-toggle" id="randBtn">✦ Nustebinkite mane</button>
+      </div>
+      <p class="studio-cta">Patiko derinys? <a href="tel:+37065833457" id="studioCall">Registruokitės — sukursime jį iš tikrųjų</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VIZITO KONSTRUKTORIUS ================= -->
+<section class="section dark" id="vizitas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="overline">Interaktyvu</p>
+      <h2>Susidėliokite savo vizitą</h2>
+      <p>Pažymėkite, ko norėtumėte — sudėsime jums paruoštą registracijos žinutę. Beliks paskambinti arba nukopijuoti.</p>
+    </div>
+    <div class="builder">
+      <div class="chips" id="chips">
+        <button class="chip" data-s="manikiūras"><span class="tick">✓</span>Manikiūras</button>
+        <button class="chip" data-s="gelinis lakavimas"><span class="tick">✓</span>Gelinis lakavimas</button>
+        <button class="chip" data-s="prancūziškas manikiūras"><span class="tick">✓</span>Prancūziškas</button>
+        <button class="chip" data-s="nagų atstatymas"><span class="tick">✓</span>Nagų atstatymas</button>
+        <button class="chip" data-s="pedikiūras"><span class="tick">✓</span>Pedikiūras</button>
+        <button class="chip" data-s="dovanų kuponas"><span class="tick">✓</span>Dovanų kuponas</button>
+      </div>
+      <div class="plan" id="plan" aria-live="polite">
+        <p class="lbl">Jūsų registracijos žinutė</p>
+        <p class="msg" id="planMsg">Pažymėkite bent vieną paslaugą — <em>ir žinutė susidėlios pati.</em></p>
+        <div class="p-actions">
+          <a class="btn pinkbtn" href="tel:+37065833457" id="planCall">Skambinti ir registruotis</a>
+          <button class="btn line" id="copyBtn" disabled>Kopijuoti žinutę</button>
+        </div>
+        <p class="copied" id="copied"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ATSILIEPIMAI ================= -->
+<section class="section" id="atsiliepimai">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="overline">Atsiliepimai</p>
+      <h2>Aukščiausias įvertinimas — ne atsitiktinumas</h2>
+    </div>
+    <div class="rev-badge">
+      <span class="big">5,0</span>
+      <span class="side"><span class="stars" aria-hidden="true">★★★★★</span>8 atsiliepimai · Google žemėlapiai</span>
+    </div>
+    <div class="reviews">
+      <article class="review">
+        <span class="stars" aria-label="5 žvaigždutės">★★★★★</span>
+        <p>Profesionalumas, atidumas, kruopštumas ir šiltas aptarnavimas.</p>
+        <div><b>Rolandas A.</b><small>Vietos gidas · Google</small></div>
+      </article>
+      <article class="review">
+        <span class="stars" aria-label="5 žvaigždutės">★★★★★</span>
+        <p>Labai kruopščiai, atidžiai ir gražiai atliktas darbas. Labai rekomenduoju Kristiną.</p>
+        <div><b>Dzeneta P.</b><small>Google atsiliepimas</small></div>
+      </article>
+      <article class="review">
+        <span class="stars" aria-label="5 žvaigždutės">★★★★★</span>
+        <p>Dirba puiki nagų specialistė.</p>
+        <div><b>Kristina S.</b><small>Vietos gidė · Google</small></div>
+      </article>
+    </div>
+    <p class="rev-foot">Visus atsiliepimus rasite <a href="https://www.google.com/maps/search/Gro%C5%BEio+salonas+Sasnavos+g.+4+Marijampol%C4%97" target="_blank" rel="noopener">Google žemėlapiuose</a>.</p>
+  </div>
+</section>
+
+<!-- ================= KONTAKTAI ================= -->
+<section class="section contact" id="kontaktai">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="overline">Kontaktai</p>
+        <h2>Laukiame jūsų Sasnavos gatvėje</h2>
+        <p class="lead">Registruojame telefonu — paskambinkite ir suderinsime jums patogų laiką.</p>
+        <div>
+          <div class="c-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><b>Adresas</b><span>Sasnavos g. 4, Marijampolė, 68113 Marijampolės sav.<br>Plus kodas: H947+6V Marijampolė</span></div>
+          </div>
+          <div class="c-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span>
+            <div><b>Telefonas</b><span><a href="tel:+37065833457">(0-658) 33457</a></span></div>
+          </div>
+          <div class="c-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><b>Laikas</b><span>Priimame pagal išankstinę registraciją — laiką suderinsime telefonu.</span></div>
+          </div>
+        </div>
+      </div>
+      <aside class="call-card">
+        <p class="overline">Grožio salonas</p>
+        <a class="num" href="tel:+37065833457">(0-658) 33457</a>
+        <p>Kruopštumas, atidumas ir šiltas aptarnavimas — taip apie mus rašo klientai. Įsitikinkite pati.</p>
+        <a class="btn pinkbtn" href="tel:+37065833457">Skambinti ir registruotis</a>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Grožio salonas · Sasnavos g. 4, Marijampolė</span>
+    <span>(0-658) 33457</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- nagų studija ---------- */
+  const nails=[...document.querySelectorAll('.nail')];
+  const box=document.getElementById('handBox');
+  const cname=document.getElementById('cname');
+  const palette=document.getElementById('palette');
+  const swatches=[...palette.querySelectorAll('.sw')];
+  const styleBtns=[...document.querySelectorAll('.style-chip')];
+  const randBtn=document.getElementById('randBtn');
+  const studioCall=document.getElementById('studioCall');
+  const GOLD='url(#goldgrad)';
+
+  // aukso gradientas SVG viduje
+  const svg=box.querySelector('svg');
+  const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
+  defs.innerHTML='<linearGradient id="goldgrad" x1="0" y1="0" x2="1" y2="1">'+
+    '<stop offset="0" stop-color="#EED9A0"/><stop offset=".5" stop-color="#C39A4C"/><stop offset="1" stop-color="#EED9A0"/></linearGradient>';
+  svg.prepend(defs);
+
+  let currentName='Vyšnia';
+  function paint(c,n){
+    nails.forEach(el=>el.setAttribute('fill', c==='gold'?GOLD:c));
+    cname.textContent=n; currentName=n;
+    studioCall.textContent='Registruokitės — sukursime „'+n+'“ iš tikrųjų';
+    box.classList.remove('glossed'); void box.offsetWidth; box.classList.add('glossed');
+  }
+  paint('#A31B3C','Vyšnia');
+
+  swatches.forEach(sw=>{
+    sw.addEventListener('click',()=>{
+      swatches.forEach(s=>s.classList.remove('on'));
+      sw.classList.add('on');
+      paint(sw.dataset.c, sw.dataset.n);
+    });
+  });
+  function setStyle(style){
+    box.classList.remove('french','matte','glitter');
+    if(style!=='classic') box.classList.add(style);
+    styleBtns.forEach(b=>{
+      const on=b.dataset.style===style;
+      b.classList.toggle('on',on);
+      b.setAttribute('aria-pressed',on);
+    });
+  }
+  styleBtns.forEach(b=>b.addEventListener('click',()=>setStyle(b.dataset.style)));
+
+  randBtn.addEventListener('click',()=>{
+    const pick=swatches[Math.floor(Math.random()*swatches.length)];
+    pick.click();
+    const stylePick=styleBtns[Math.floor(Math.random()*styleBtns.length)];
+    stylePick.click();
+  });
+
+  /* ---------- vizito konstruktorius ---------- */
+  const chips=[...document.querySelectorAll('.chip')];
+  const plan=document.getElementById('plan');
+  const msg=document.getElementById('planMsg');
+  const copyBtn=document.getElementById('copyBtn');
+  const copied=document.getElementById('copied');
+  let plainMsg='';
+
+  function renderPlan(){
+    const sel=chips.filter(c=>c.classList.contains('on')).map(c=>c.dataset.s);
+    if(sel.length===0){
+      plan.classList.remove('active');
+      msg.innerHTML='Pažymėkite bent vieną paslaugą — <em>ir žinutė susidėlios pati.</em>';
+      copyBtn.disabled=true; plainMsg=''; copied.textContent='';
+      return;
+    }
+    plan.classList.add('active');
+    const list=sel.length>1 ? sel.slice(0,-1).join(', ')+' ir '+sel[sel.length-1] : sel[0];
+    plainMsg='Sveiki! Norėčiau užsiregistruoti: '+list+'. Koks laikas būtų galimas?';
+    msg.innerHTML='„Sveiki! Norėčiau užsiregistruoti: <em>'+list+'</em>. Koks laikas būtų galimas?“';
+    copyBtn.disabled=false;
+  }
+  chips.forEach(c=>c.addEventListener('click',()=>{c.classList.toggle('on');renderPlan();}));
+  copyBtn.addEventListener('click',async()=>{
+    try{
+      await navigator.clipboard.writeText(plainMsg);
+      copied.textContent='Nukopijuota! Įklijuokite žinutėje ar Messenger.';
+    }catch(e){
+      copied.textContent=plainMsg;
+    }
+  });
+})();
+</script>
+</body>
+</html>

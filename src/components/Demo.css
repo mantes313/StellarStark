@@ -1,0 +1,81 @@
+/* ---------- Demo ---------- */
+
+.demo { background: var(--bg-deep); border-block: 1px solid var(--line); padding: 6.5rem 0; }
+
+.demo-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.demo-copy h2 { margin-bottom: 1rem; }
+.demo-copy p { color: var(--muted); max-width: 40ch; }
+
+.demo-panel {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  background: var(--bg-raised);
+  padding: 2.2rem;
+  transition: border-top-color 400ms ease;
+}
+
+.demo-prompt {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1.6rem;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-bottom: 1.4rem;
+}
+
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), border-color 180ms ease;
+}
+.swatch:active { transform: scale(0.97); }
+.swatch[aria-pressed="true"] { border-color: var(--sw); }
+@media (hover: hover) and (pointer: fine) {
+  .swatch:hover { border-color: var(--sw); }
+}
+
+.sw-dot {
+  width: 16px; height: 16px;
+  background: var(--sw);
+  flex: none;
+}
+
+.demo-status {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  transition: color 400ms ease;
+}
+.demo-status.confirmed { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .swatch { transition: none; }
+}
+
+@media (max-width: 900px) {
+  .demo-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .demo { padding: 4.5rem 0; }
+}

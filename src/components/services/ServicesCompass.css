@@ -1,0 +1,99 @@
+/* ---------- Services compass dial ---------- */
+
+.compass {
+  position: relative;
+  width: min(340px, 78vw);
+  aspect-ratio: 1;
+  --radius: 118px;
+}
+
+.compass::before {
+  content: "";
+  position: absolute;
+  inset: -22%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.compass-dial {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.compass-ring {
+  fill: var(--bg-raised);
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.compass-ticks {
+  fill: none;
+  stroke: var(--blueprint-dim);
+  stroke-width: 1;
+  stroke-dasharray: 2 23;
+}
+
+.compass-hub {
+  fill: var(--accent);
+}
+
+.compass-needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: calc(var(--radius) * 0.72);
+  background: linear-gradient(to top, var(--accent), color-mix(in srgb, var(--accent) 35%, transparent));
+  border-radius: 2px;
+  transform-origin: bottom center;
+  transform: translate(-50%, -100%) rotate(var(--needle-angle));
+  transition: transform 700ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.compass-points {
+  position: absolute;
+  inset: 0;
+}
+
+.compass-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:
+    translate(-50%, -50%)
+    translate(calc(cos(var(--angle)) * var(--radius)), calc(sin(var(--angle)) * var(--radius)));
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+.compass-point:hover,
+.compass-point:focus-visible {
+  border-color: var(--blueprint);
+  color: var(--ink);
+}
+.compass-point.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compass-needle { transition: none; }
+  .compass-point { transition: none; }
+}
+
+@media (max-width: 768px) {
+  .compass { width: min(240px, 72vw); --radius: 82px; }
+  .compass-point { font-size: 0.6rem; padding: 0.4rem 0.6rem; }
+}

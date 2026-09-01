@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto kondicionierių remontas ir pildymas — Marijampolė</title>
+<meta name="description" content="Automobilių kondicionierių pildymas, diagnostika ir remontas Marijampolėje. Tel. (0-681) 74733, Saulės g. 24.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&family=Chakra+Petch:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* t: 0 = karštis, 1 = vėsa (keičia JS) */
+  --t:0;
+  --night:#0B1118;
+  --panel:#111B26;
+  --hot:#FF5A2E;
+  --hot-2:#FFB03A;
+  --cold:#59C8F5;
+  --cold-2:#9FE6FF;
+  --frost:#EFF7FC;
+  --steel:#7E93A5;
+  --line:rgba(140,180,210,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Space Grotesk',system-ui,sans-serif;
+  background:var(--night);
+  color:var(--frost);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--cold);color:var(--night)}
+h1,h2,h3{line-height:1.05}
+.display{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.015em;text-transform:uppercase}
+.digital{font-family:'Chakra Petch',monospace;font-weight:700;font-variant-numeric:tabular-nums}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--cold);outline-offset:3px}
+
+/* ============ HEADER ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:rgba(11,17,24,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-led{
+  width:10px;height:10px;border-radius:50%;flex:none;
+  background:color-mix(in srgb, var(--hot) calc((1 - var(--t))*100%), var(--cold) calc(var(--t)*100%));
+  box-shadow:0 0 12px color-mix(in srgb, var(--hot) calc((1 - var(--t))*100%), var(--cold) calc(var(--t)*100%));
+  transition:background .3s, box-shadow .3s;
+}
+.brand span{font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.nav-links{display:flex;gap:24px;align-items:center;font-size:13.5px;font-weight:500}
+.nav-links a{text-decoration:none;opacity:.8;transition:.2s}
+.nav-links a:hover{opacity:1;color:var(--cold)}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--cold);color:var(--night);
+  padding:10px 18px;border-radius:8px;
+  font-weight:700;font-size:13.5px;text-decoration:none;font-family:'Chakra Petch',sans-serif;
+  letter-spacing:.04em;
+  transition:transform .15s, background .2s;
+}
+.btn:hover{background:var(--cold-2);transform:translateY(-1px)}
+@media(max-width:760px){.nav-links a:not(.btn){display:none}}
+
+/* ============ HERO — klimato pultas ============ */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:110px 0 70px;
+}
+/* karščio ir vėsos sluoksniai */
+.clim{position:absolute;inset:0;pointer-events:none;transition:opacity .25s linear}
+.clim.hot{
+  background:
+    radial-gradient(1000px 600px at 75% 20%, rgba(255,90,46,.34), transparent 62%),
+    radial-gradient(800px 600px at 15% 85%, rgba(255,176,58,.20), transparent 60%),
+    linear-gradient(180deg,#1C0F08,#120B07);
+  opacity:calc(1 - var(--t));
+}
+.clim.cold{
+  background:
+    radial-gradient(1000px 600px at 75% 20%, rgba(89,200,245,.26), transparent 62%),
+    radial-gradient(800px 600px at 15% 85%, rgba(159,230,255,.12), transparent 60%),
+    linear-gradient(180deg,#0A141D,#0B1118);
+  opacity:var(--t);
+}
+/* virpantis karščio miražas */
+.haze{
+  position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(180deg, transparent 0 6px, rgba(255,120,60,.05) 6px 7px);
+  opacity:calc((1 - var(--t)) * .8);
+  animation:haze 2.2s ease-in-out infinite alternate;
+}
+@keyframes haze{from{transform:translateY(0) scaleY(1)}to{transform:translateY(-6px) scaleY(1.02)}}
+/* snaigės */
+.snow{position:absolute;inset:0;pointer-events:none;opacity:var(--t);transition:opacity .3s}
+.flake{position:absolute;top:-4%;color:var(--cold-2);animation:fall linear infinite;user-select:none}
+@keyframes fall{to{transform:translateY(108vh) rotate(300deg)}}
+
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.kicker{
+  font-family:'Chakra Petch',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--steel);
+  display:flex;align-items:center;gap:12px;margin-bottom:22px;
+}
+.kicker::before{content:"";width:38px;height:1px;background:currentColor}
+.hero h1{font-size:clamp(46px,7.2vw,96px);margin-bottom:8px}
+.hero h1 .hotword,.hero h1 .coldword{display:inline-block;position:relative}
+.hotword{color:var(--hot);opacity:calc(1 - var(--t));transition:opacity .25s}
+.coldword{color:var(--cold);position:absolute!important;left:0;top:0;opacity:var(--t);transition:opacity .25s}
+.h1line{position:relative;display:inline-block}
+.hero p.lead{font-size:17.5px;max-width:46ch;color:rgba(239,247,252,.8);margin:18px 0 30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn.big{padding:15px 26px;font-size:15px}
+.btn.ghost{background:transparent;color:var(--frost);border:1.5px solid var(--line)}
+.btn.ghost:hover{border-color:var(--cold);background:rgba(89,200,245,.08)}
+
+/* klimato pulto blokas */
+.climate{
+  background:rgba(17,27,38,.72);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:30px 30px 26px;
+  width:340px;max-width:100%;
+  text-align:center;
+  box-shadow:0 40px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.climate .lbl{
+  font-family:'Chakra Petch',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--steel);
+}
+.temp-read{
+  font-size:88px;line-height:1;margin:14px 0 4px;
+  color:color-mix(in srgb, var(--hot) calc((1 - var(--t))*100%), var(--cold) calc(var(--t)*100%));
+  text-shadow:0 0 34px color-mix(in srgb, rgba(255,90,46,.55) calc((1 - var(--t))*100%), rgba(89,200,245,.55) calc(var(--t)*100%));
+  transition:color .25s, text-shadow .25s;
+}
+.temp-read sup{font-size:30px;vertical-align:super}
+.temp-state{
+  font-family:'Chakra Petch',sans-serif;font-size:12.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;min-height:20px;
+  color:var(--steel);
+}
+.slider-zone{margin-top:24px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:10px;border-radius:99px;cursor:pointer;
+  background:linear-gradient(90deg,#FF5A2E,#FFB03A 40%,#9FE6FF 75%,#59C8F5);
+  outline-offset:4px;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--frost);border:4px solid var(--night);
+  box-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+input[type=range]::-moz-range-thumb{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--frost);border:4px solid var(--night);
+  box-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+.slider-zone .hint{
+  margin-top:12px;font-size:12.5px;color:var(--steel);
+  font-family:'Chakra Petch',sans-serif;letter-spacing:.06em;
+}
+.climate .fan{
+  margin-top:18px;display:flex;justify-content:center;gap:5px;height:14px;align-items:flex-end;
+}
+.fan i{
+  width:5px;border-radius:3px;background:var(--cold);
+  animation:fan .9s ease-in-out infinite alternate;
+  opacity:var(--t);transition:opacity .3s;
+}
+.fan i:nth-child(1){height:40%;animation-delay:0s}
+.fan i:nth-child(2){height:80%;animation-delay:.12s}
+.fan i:nth-child(3){height:60%;animation-delay:.24s}
+.fan i:nth-child(4){height:100%;animation-delay:.06s}
+.fan i:nth-child(5){height:50%;animation-delay:.18s}
+@keyframes fan{from{transform:scaleY(.5)}to{transform:scaleY(1.1)}}
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:44px}
+  .climate{margin:0 auto}
+}
+
+/* scroll nuoroda */
+.scroll-hint{
+  position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+  z-index:2;font-family:'Chakra Petch',sans-serif;font-size:11px;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--steel);
+  display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;
+}
+.scroll-hint::after{content:"";width:1px;height:34px;background:linear-gradient(var(--steel),transparent)}
+
+/* ============ BENDROS SEKCIJOS ============ */
+.section{padding:96px 0;position:relative}
+.sec-tag{
+  font-family:'Chakra Petch',sans-serif;font-size:11.5px;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--cold);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.sec-tag::before{content:"";width:38px;height:1px;background:var(--cold)}
+.section h2{font-size:clamp(34px,4.6vw,58px);margin-bottom:16px}
+.sec-lead{color:rgba(239,247,252,.72);max-width:56ch;font-size:16.5px}
+
+/* --- paslaugos: klimato pulto mygtukai --- */
+.svc{
+  margin-top:54px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.svc-btn{
+  position:relative;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:34px 28px 30px;
+  transition:border-color .2s, transform .2s, box-shadow .2s;
+  overflow:hidden;
+}
+.svc-btn::before{ /* LED juostelė kaip ant pulto mygtuko */
+  content:"";position:absolute;top:0;left:28px;right:28px;height:3px;border-radius:0 0 4px 4px;
+  background:var(--steel);opacity:.35;transition:.25s;
+}
+.svc-btn:hover{border-color:rgba(89,200,245,.5);transform:translateY(-4px);box-shadow:0 24px 48px rgba(0,0,0,.35)}
+.svc-btn:hover::before{background:var(--cold);opacity:1;box-shadow:0 0 16px var(--cold)}
+.svc-btn .ic{width:46px;height:46px;margin-bottom:20px}
+.svc-btn .ic svg{width:100%;height:100%;stroke:var(--cold)}
+.svc-btn h3{font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:700;margin-bottom:10px}
+.svc-btn p{font-size:14.5px;color:rgba(239,247,252,.7)}
+@media(max-width:860px){.svc{grid-template-columns:1fr}}
+
+/* --- kaip dirbame: laiko juosta --- */
+.timeline{margin-top:54px;position:relative;padding-left:34px}
+.timeline::before{
+  content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
+  background:linear-gradient(var(--hot), var(--cold));border-radius:2px;
+}
+.tstep{position:relative;padding:0 0 40px 22px}
+.tstep:last-child{padding-bottom:0}
+.tstep::before{
+  content:"";position:absolute;left:-33px;top:5px;
+  width:16px;height:16px;border-radius:50%;
+  background:var(--night);border:3px solid var(--cold);
+}
+.tstep:first-child::before{border-color:var(--hot)}
+.tstep .tt{font-family:'Chakra Petch',monospace;font-size:12px;color:var(--steel);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.tstep h3{font-family:'Chakra Petch',sans-serif;font-size:19px;margin-bottom:6px}
+.tstep p{font-size:15px;color:rgba(239,247,252,.72);max-width:60ch}
+
+/* --- atsiliepimai: prietaisų skydelio ekranai --- */
+.rev-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.rev-score{
+  text-align:right;
+}
+.rev-score .n{font-size:72px;line-height:1;color:var(--cold);text-shadow:0 0 30px rgba(89,200,245,.5)}
+.rev-score .d{font-family:'Chakra Petch',sans-serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
+.reviews{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.review{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;padding:28px 26px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.review .top{display:flex;justify-content:space-between;align-items:center}
+.review .stars{color:var(--cold);letter-spacing:2px;font-size:13px}
+.review .temp{font-family:'Chakra Petch',monospace;font-size:12px;color:var(--steel)}
+.review p{font-size:14.5px;color:rgba(239,247,252,.85);flex:1}
+.review p::before{content:"„"}.review p::after{content:"“"}
+.review .who b{font-family:'Chakra Petch',sans-serif;font-size:14px;display:block}
+.review .who small{font-size:12px;color:var(--steel)}
+@media(max-width:860px){.reviews{grid-template-columns:1fr}}
+.rev-foot{margin-top:30px;font-size:14px;color:var(--steel)}
+.rev-foot a{color:var(--cold);font-weight:700}
+
+/* --- kontaktai --- */
+.contact{
+  background:
+    radial-gradient(800px 400px at 80% 0%, rgba(89,200,245,.10), transparent 60%),
+    var(--panel);
+  border-top:1px solid var(--line);
+}
+.contact .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start;margin-top:10px}
+.c-row{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.c-row:last-child{border-bottom:none}
+.c-row .ic{width:40px;height:40px;border-radius:10px;flex:none;border:1px solid var(--line);display:grid;place-items:center}
+.c-row .ic svg{width:19px;height:19px;stroke:var(--cold)}
+.c-row b{font-family:'Chakra Petch',sans-serif;display:block;font-size:15px;margin-bottom:2px}
+.c-row span{font-size:14.5px;color:rgba(239,247,252,.72)}
+.c-row a{color:var(--cold);font-weight:700;text-decoration:none}
+.c-row a:hover{text-decoration:underline}
+.big-call{
+  border:1px solid var(--line);border-radius:20px;
+  padding:40px 36px;text-align:left;
+  background:rgba(11,17,24,.6);
+}
+.big-call .lbl{font-family:'Chakra Petch',sans-serif;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cold);font-weight:700;margin-bottom:16px}
+.big-call .num{
+  font-family:'Anton',sans-serif;font-size:clamp(34px,4.4vw,52px);
+  display:block;text-decoration:none;line-height:1.05;margin-bottom:14px;letter-spacing:.02em;
+}
+.big-call .num:hover{color:var(--cold)}
+.big-call p{font-size:14.5px;color:rgba(239,247,252,.72);margin-bottom:22px}
+@media(max-width:860px){.contact .grid{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:13px;color:var(--steel)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#virsus">
+      <span class="brand-led" aria-hidden="true"></span>
+      <span>Auto kondicionierių remontas · Marijampolė</span>
+    </a>
+    <nav class="nav-links" aria-label="Navigacija">
+      <a href="#paslaugos">Paslaugos</a>
+      <a href="#kaip">Kaip dirbame</a>
+      <a href="#atsiliepimai">Atsiliepimai</a>
+      <a href="#kontaktai">Kontaktai</a>
+      <a class="btn" href="tel:+37068174733">(0-681) 74733</a>
+    </nav>
+  </div>
+</header>
+
+<main id="virsus">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="clim hot" aria-hidden="true"></div>
+  <div class="clim cold" aria-hidden="true"></div>
+  <div class="haze" aria-hidden="true"></div>
+  <div class="snow" id="snow" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div>
+      <p class="kicker">Automobilių servisas · Saulės g. 24, Marijampolė</p>
+      <h1 class="display">
+        Jūsų automobilyje<br>
+        <span class="h1line">
+          <span class="hotword">+35° karštis.</span>
+          <span class="coldword">maloni vėsa.</span>
+        </span>
+      </h1>
+      <p class="lead">Patraukite temperatūrą žemyn ir pajuskite skirtumą — būtent tai padarome jūsų automobiliui. Kondicionierių diagnostika, pildymas ir remontas. Dažnai — tą pačią dieną.</p>
+      <div class="hero-cta">
+        <a class="btn big" href="tel:+37068174733">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+          Skambinti dabar
+        </a>
+        <a class="btn ghost big" href="#paslaugos">Paslaugos</a>
+      </div>
+    </div>
+
+    <!-- klimato pultas -->
+    <div class="climate" role="group" aria-label="Interaktyvus klimato pultas">
+      <span class="lbl">Salono temperatūra</span>
+      <div class="temp-read digital" id="tempRead" aria-live="polite">35<sup>°C</sup></div>
+      <div class="temp-state" id="tempState">Kondicionierius neveikia</div>
+      <div class="slider-zone">
+        <input type="range" id="tempSlider" min="0" max="100" value="0" step="1" aria-label="Temperatūros valdymas: nuo karščio iki vėsos">
+        <div class="hint" id="sliderHint">◀ patraukite ir atvėsinkite saloną</div>
+      </div>
+      <div class="fan" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <a class="scroll-hint" href="#paslaugos">Žemiau</a>
+</section>
+
+<!-- ============ PASLAUGOS ============ -->
+<section class="section" id="paslaugos">
+  <div class="wrap">
+    <p class="sec-tag">Paslaugos</p>
+    <h2 class="display">Trys mygtukai,<br>kuriuos spaudžiame už jus</h2>
+    <p class="sec-lead">Nuo paprasto papildymo iki rimtesnio remonto — viskas vienose rankose.</p>
+    <div class="svc">
+      <article class="svc-btn">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M12 3l-2.5 2.5M12 3l2.5 2.5M12 21l-2.5-2.5M12 21l2.5-2.5M4 12h16M4 12l2.5-2.5M4 12l2.5 2.5M20 12l-2.5-2.5M20 12l-2.5 2.5M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg></div>
+        <h3>Pildymas šaltnešiu</h3>
+        <p>Sistemos užpildymas, kad kondicionierius vėl šaldytų kaip priklauso. Prieš pildydami patikriname, ar sistema sandari — kad pinigai neišgaruotų kartu su freonu.</p>
+      </article>
+      <article class="svc-btn">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8.5 11h5M11 8.5v5"/></svg></div>
+        <h3>Diagnostika ir sandarumo patikra</h3>
+        <p>Surandame tikrąją priežastį, kodėl nešaldo: nuosrūvis, kompresorius, kondensatorius ar kita grandies dalis. Aiškiai paaiškiname, ką radome.</p>
+      </article>
+      <article class="svc-btn">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 3.7-3.7z"/></svg></div>
+        <h3>Remontas</h3>
+        <p>Sugedusių komponentų taisymas ir keitimas. Sąžiningas įvertinimas: jei problemos nėra arba remontas neapsimoka — pasakome tiesiai.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KAIP DIRBAME ============ -->
+<section class="section" id="kaip" style="padding-top:20px">
+  <div class="wrap">
+    <p class="sec-tag">Kaip dirbame</p>
+    <h2 class="display">Nuo +35° iki vėsos —<br>keturi žingsniai</h2>
+    <div class="timeline">
+      <div class="tstep">
+        <div class="tt">+35° · Skambutis</div>
+        <h3>Paskambinate</h3>
+        <p>Trumpai apibūdinate problemą — susitariame, kada atvaryti automobilį.</p>
+      </div>
+      <div class="tstep">
+        <div class="tt">+30° · Diagnostika</div>
+        <h3>Surandame priežastį</h3>
+        <p>Neretai — jau per pirmą valandą. Klientas paliko mašiną antradieniui–trečiadieniui, o meistras paskambino po valandos su rasta problema.</p>
+      </div>
+      <div class="tstep">
+        <div class="tt">+25° · Suderinimas</div>
+        <h3>Aiškiai pasakome, ką darysime</h3>
+        <p>Ir kiek tai kainuos. Jokių išgalvotų darbų: jei gedimo nėra — taip ir pasakome.</p>
+      </div>
+      <div class="tstep">
+        <div class="tt">+18° · Rezultatas</div>
+        <h3>Išvažiuojate su vėsiu salonu</h3>
+        <p>Dažnai — tą pačią dieną. Kondicionierius veikia, vasara nebebaisi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATSILIEPIMAI ============ -->
+<section class="section" id="atsiliepimai" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rev-head">
+      <div>
+        <p class="sec-tag">Atsiliepimai</p>
+        <h2 class="display">Įvertinimas, kurio<br>nepakelsi aukščiau</h2>
+      </div>
+      <div class="rev-score">
+        <div class="n digital">5.0</div>
+        <div class="d">26 atsiliepimai · Google</div>
+      </div>
+    </div>
+    <div class="reviews">
+      <article class="review">
+        <div class="top"><span class="stars" aria-label="5 žvaigždutės">★★★★★</span><span class="temp">SUTVARKYTA TĄ PAČIĄ DIENĄ</span></div>
+        <p>Mašina buvo palikta antradienį, tikėtasi, kad pradės tvarkyti trečiadienį — žmogus jau po valandos paskambino, kad rado problemą, ir tą pačią dieną sutvarkė. Maloniai bendraujantis žmogus.</p>
+        <div class="who"><b>Paulius D.</b><small>Google atsiliepimas</small></div>
+      </article>
+      <article class="review">
+        <div class="top"><span class="stars" aria-label="5 žvaigždutės">★★★★★</span><span class="temp">SĄŽININGUMAS</span></div>
+        <p>Šventinė diena, laukiami svečiai, tačiau Andrius pakviečia užsukti išspręsti problemą. Operatyviai, maloniai. O kadangi problemos, pasirodo, nėra — belieka tik maloniai atsisveikinti.</p>
+        <div class="who"><b>Janina T.</b><small>Vietos gidė · Google</small></div>
+      </article>
+      <article class="review">
+        <div class="top"><span class="stars" aria-label="5 žvaigždutės">★★★★★</span><span class="temp">SPECIALISTAS</span></div>
+        <p>Geras meistras. Savo srities specialistas.</p>
+        <div class="who"><b>Marius</b><small>Vietos gidas · Google</small></div>
+      </article>
+    </div>
+    <p class="rev-foot">Visus atsiliepimus rasite <a href="https://www.google.com/maps/search/Auto+kondicionieri%C5%B3+remontas+ir+pildymas+Marijampol%C4%97" target="_blank" rel="noopener">Google žemėlapiuose</a>.</p>
+  </div>
+</section>
+
+<!-- ============ KONTAKTAI ============ -->
+<section class="section contact" id="kontaktai">
+  <div class="wrap">
+    <p class="sec-tag">Kontaktai</p>
+    <h2 class="display">Karšta? Skambinkite.</h2>
+    <div class="grid">
+      <div>
+        <div class="c-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Adresas</b><span>Saulės g. 24, Marijampolė, 68273 Marijampolės sav.<br>Plus kodas: G9V6+WH Marijampolė</span></div>
+        </div>
+        <div class="c-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7A2 2 0 0 1 22 16.9z"/></svg></span>
+          <div><b>Telefonas</b><span><a href="tel:+37068174733">(0-681) 74733</a></span></div>
+        </div>
+        <div class="c-row">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><b>Darbo laikas</b><span>Dirbame nuo 9:00. Prieš atvykdami paskambinkite — susitarsime dėl tikslaus laiko.</span></div>
+        </div>
+      </div>
+      <aside class="big-call">
+        <div class="lbl">Kondicionierius nešaldo?</div>
+        <a class="num display" href="tel:+37068174733">(0-681) 74733</a>
+        <p>Vienas skambutis — ir sužinosite, ką daryti toliau. Dažnai gedimą randame ir sutvarkome tą pačią dieną.</p>
+        <a class="btn big" href="tel:+37068174733">Skambinti dabar</a>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Auto kondicionierių remontas ir pildymas · Marijampolė</span>
+    <span>Saulės g. 24 · (0-681) 74733</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const root=document.documentElement;
+  const slider=document.getElementById('tempSlider');
+  const read=document.getElementById('tempRead');
+  const state=document.getElementById('tempState');
+  const hint=document.getElementById('sliderHint');
+  const snow=document.getElementById('snow');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // snaigės
+  const flakes=26;
+  for(let i=0;i<flakes;i++){
+    const f=document.createElement('span');
+    f.className='flake';
+    f.textContent='❄';
+    const size=8+Math.random()*12;
+    f.style.left=Math.random()*100+'%';
+    f.style.fontSize=size+'px';
+    f.style.opacity=(0.25+Math.random()*0.6).toFixed(2);
+    f.style.animationDuration=(6+Math.random()*8)+'s';
+    f.style.animationDelay=(-Math.random()*10)+'s';
+    snow.appendChild(f);
+  }
+
+  const states=[
+    [0,'Kondicionierius neveikia'],
+    [0.25,'Diagnostika...'],
+    [0.55,'Sistema pildoma...'],
+    [0.85,'Veikia puikiai ✓']
+  ];
+  let userTouched=false;
+
+  function apply(t){
+    root.style.setProperty('--t',t);
+    const temp=Math.round(35-17*t);
+    read.innerHTML=temp+'<sup>°C</sup>';
+    let s=states[0][1];
+    for(const [th,txt] of states){ if(t>=th) s=txt; }
+    state.textContent=s;
+    if(t>=0.98){ hint.textContent='vėsu — kaip po mūsų remonto ✓'; }
+    else if(userTouched){ hint.textContent='◀ patraukite ir atvėsinkite saloną'; }
+  }
+
+  slider.addEventListener('input',()=>{
+    userTouched=true;
+    apply(slider.value/100);
+  });
+
+  // automatinė demonstracija paleidus puslapį (jei vartotojas dar nelietė)
+  if(!reduce){
+    let start=null;
+    const dur=3200, delay=900;
+    function tick(ts){
+      if(userTouched) return;
+      if(start===null) start=ts;
+      const p=Math.min(1,(ts-start-delay)/dur);
+      if(p>0){
+        const e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; // easeInOut
+        slider.value=Math.round(e*100);
+        apply(e);
+      }
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  } else {
+    slider.value=100; apply(1);
+  }
+
+  apply(0);
+})();
+</script>
+</body>
+</html>
